@@ -15,7 +15,7 @@ function Home() {
   const sidebarWidth = '280px';
 
   return (
-    <div className='flex flex-row h-screen'>
+    <div className='flex flex-row h-screen bg-[#26292E]'>
       {/* Fixing the sidebar */}
       <div style={{ width: sidebarWidth, position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 1000 }} className='md:block hidden'>
         <Sidebar />
@@ -38,7 +38,7 @@ function Home() {
       <div style={{ flex: 1, overflowY: 'auto' }} className='md:hidden block' >
         
         <Routes>
-          <Route path='/main' element={<Assistants />} />
+          <Route path='/assistants' element={<Assistants />} />
           <Route path='/phone' element={<PhoneNumber />} />
           <Route path='/call' element={<CallLogs />} />
           <Route path='/voice' element={<VoiceLibrary />} />
