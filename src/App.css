@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+
+
+
+
+
+
+.react-tabs__tab--selected {
+  background-color: #38bdf8 !important; /* Change this to your desired active tab color */
+  color: white !important ;
+  border: none !important;
+}
+
+.react-tabs__tab {
+color: #ccc; /* Change this to your desired unselected tab color */
+  
+}
+
+.read-more-container {
+  height: 40px; /* Yahan do lines ki height set karain */
+  overflow: hidden;
+  transition: height 0.5s; /* Smooth transition */
+}
+
+.read-more-container:hover {
+  height: 100px; /* Jab hover ho, toh is height tak expand karen */
+}
+
+
