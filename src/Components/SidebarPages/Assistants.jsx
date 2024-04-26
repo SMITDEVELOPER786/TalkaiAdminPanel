@@ -3,11 +3,14 @@ import React from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Ai from "../../assets/Ai.png"
+import Plus from "../../assets/Plus.png"
 import 'react-tabs/style/react-tabs.css';
 import "../../App.css"
 function Assistants() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
+  const [tab,settab]=useState(false)
   const cancelButtonRef = useRef(null)
   return (
     <div>
@@ -19,7 +22,7 @@ function Assistants() {
   <div className='flex-shrink-0'> {/* Allows flexibility in space allocation */}
     <div className='flex items-center justify-between gap-2 border border-gray-500 rounded-full px-3 py-3 text-white'>
       <Icon icon="fa6-solid:plus" width={15} color='#55E3CB' />
-      <span className='hidden md:inline-block'>Create new assistant</span> {/* Hides text on smaller screens */}
+      <span className='hidden md:inline-block cursor-pointer' onClick={()=>setOpen(true)}>Create new assistant</span> {/* Hides text on smaller screens */}
     </div>
   </div>
 </header>
@@ -262,7 +265,7 @@ function Assistants() {
 
 {/*Modal Start*/}
 <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+      <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -275,8 +278,8 @@ function Assistants() {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div className="fixed inset-0 z-10  w-screen overflow-y-auto">
+          <div className="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -286,43 +289,142 @@ function Assistants() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              
+              {
+                tab==false ? 
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-black-500 px-8 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                <div className="bg-black-500  pb-4 pt-5  sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      {/* <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" /> */}
-                    </div>
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        Deactivate account
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Are you sure you want to deactivate your account? All of your data will be permanently
-                          removed. This action cannot be undone.
-                        </p>
-                      </div>
+                
+                    <div className="mt-3 text-center  sm:text-left">
+                      <Dialog.Title as="h3" className="sm:text-xl text-base font-semibold leading-6 text-[#55E3CB]">
+<h1>                      Create your new Assistants                  
+</h1>
+                      <p className='text-[#FFFFFF] text-[10px] leading-3'>Please select a template or utilize a blank template to create your assistants.</p>
+                          </Dialog.Title>
+                
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
+                <div className='bg-black-500  grid  md:grid-cols-5 sm:grid-cols-3 grid-cols-2   gap-5 mb-20'>
+                  
+                <div className='space-y-2  flex flex-col items-center'>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+        <img src={Ai} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+    <div className='space-y-2  flex flex-col items-center'>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+        <img src={Ai} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+    <div className='space-y-2  flex flex-col items-center'>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+        <img src={Ai} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+    <div className='space-y-2  flex flex-col items-center'>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+        <img src={Ai} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+    <div className='space-y-2 flex flex-col items-center'>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+        <img src={Ai} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+    <div className='space-y-2  flex flex-col justify-center items-center'>
+      <div className='p-[27px] border-2 bg-[#26292e]  rounded-full flex-shrink-0'>
+        <img src={Plus} alt="" className='rounded-full' />
+      </div>
+      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+    </div>
+
+                  </div>    
+                <div className="bg-black-500 border-t gap-10 border-gray-600   py-3 sm:flex sm:flex-row ">
+          
+
+<div className='md:w-[70%] w-full'>
+  <p className='text-[9px] text-white sm:text-start text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+
+<div className='flex justify-end md:w-32 w-full'>
+<button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                  >
-                    Deactivate
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    className="mt-3 inline-flex w-full justify-center  items-center rounded-md bg-[#55E3CB] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm   sm:mt-0 sm:w-auto"
+                    onClick={() => settab(true)}
                     ref={cancelButtonRef}
                   >
-                    Cancel
+                    Next
                   </button>
+</div>
+    
                 </div>
               </Dialog.Panel>
+
+:
+<Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-black-500 px-8 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+<div className="bg-black-500  pb-4 pt-5  sm:pb-4">
+  <div className="sm:flex sm:items-start">
+
+    <div className="mt-3 text-center  sm:text-left">
+      <Dialog.Title as="h3" className="sm:text-xl text-base font-semibold leading-6 text-[#55E3CB]">
+<h1>                    Customization your assistant                 
+</h1>
+      <p className='text-[#FFFFFF] text-[10px] leading-3'>Please assign a unique name to your assistant.</p>
+          </Dialog.Title>
+
+    </div>
+  </div>
+</div>
+<div className='bg-black-500 flex sm:flex-row flex-col items-center  sm:gap-20 gap-5 mb-40'>
+  
+<div className='space-y-1'>
+<div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full'>
+<img src={Ai} alt="" className='rounded-full' />
+</div>
+<h1 className='text-white text-xs text-center'>Lorem Ipsum</h1>
+</div>
+<div className='w-full space-y-5'>
+  <input type="text" className='w-full bg-[#26292E] rounded-lg py-2 pl-3' style={{ fontSize: '12px' }} placeholder='Name' />
+  <p className='text-[9px] text-white'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+
+  </div>    
+<div className="bg-black-500 border-t gap-3 border-gray-600  justify-end py-3 sm:flex sm:flex-row ">
+   <button
+    type="button"
+    className="inline-flex w-full justify-center rounded-md text-[#717884] bg-[#26292E] px-3 py-2 text-sm font-semibold  shadow-sm  sm:w-auto"
+    onClick={() => settab(false)}
+  >
+    Back
+  </button>
+
+<button
+    type="button"
+    className="mt-3 inline-flex w-full justify-center  items-center rounded-md bg-[#55E3CB] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm   sm:mt-0 sm:w-auto"
+    onClick={() => setOpen(false)}
+    ref={cancelButtonRef}
+  >
+    Next
+  </button>
+
+</div>
+</Dialog.Panel>
+
+              }
+              
+        
+
+
+
+
+
             </Transition.Child>
           </div>
         </div>
