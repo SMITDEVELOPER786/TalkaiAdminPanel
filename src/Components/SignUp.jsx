@@ -3,7 +3,7 @@ import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function SignUp() {
   return (
     <div className='bg-main py-20 relative'>
       {/* Shadow image */}
@@ -16,14 +16,35 @@ function Login() {
             <div className="mb-2">
               <h1 className='text-center font-bold text-white text-3xl'>Talkai247</h1>
             </div>
-            <p className="mt-2 text-base text-center text-white">Welcome back! Please log into your account</p>
+            <p className="mt-2 text-base text-center text-white">Welcome Sign Up for Free!</p>
             <form action="#" method="POST" className="mt-8">
   <div className="space-y-5">
     <div>
-   
-      <div className="mt-2 bg-white rounded-full flex items-center">
+    <div className="mt-2 bg-white rounded-full flex items-center">
         <span className="pl-3">
         <Icon  icon="fa-solid:user" width="18" height="18" />
+        </span>
+        <input
+          className="flex h-10 w-full outline-none bg-transparent px-3 py-2 text-sm placeholder:text-gray-400"
+          type="text"
+          placeholder="Enter Your Name"
+          id="email"
+        />
+      </div>
+    <div className="mt-2 bg-white rounded-full flex items-center">
+        <span className="pl-3">
+        <Icon  icon="vaadin:phone" width="18" height="18" />
+        </span>
+        <input
+          className="flex h-10 w-full outline-none bg-transparent px-3 py-2 text-sm placeholder:text-gray-400"
+          type="number"
+          placeholder="Enter Your Contact"
+          id="email"
+        />
+      </div>
+      <div className="mt-2 bg-white rounded-full flex items-center">
+        <span className="pl-3">
+        <Icon  icon="eva:email-fill"  width="18" height="18" />
         </span>
         <input
           className="flex h-10 w-full outline-none bg-transparent px-3 py-2 text-sm placeholder:text-gray-400"
@@ -32,8 +53,8 @@ function Login() {
           id="email"
         />
       </div>
-    </div>
-    <div>
+
+      <div>
       <div className="mt-2 bg-white rounded-full flex items-center">
         <span className="pl-3">
         <Icon icon="heroicons-solid:lock-open" width="20" height="20" />
@@ -46,6 +67,11 @@ function Login() {
         />
       </div>
     </div>
+
+
+
+    </div>
+   
     <div>
       <p className='text-center text-gray-400'>or continue with</p>
     </div>
@@ -77,14 +103,14 @@ function Login() {
                 className="relative mt-2 inline-flex text-white w-full items-center justify-center rounded-full bg-[#55E2CA] px-3.5 py-2.5 font-semibold transition-all duration-200"
               >
                 <span className="mr-2 inline-block"></span>
-                Login
+              Sign Up
               </button>
 
 
               </Link>
 
               <p className='text-center text-white text-sm'>Forgot your password?</p>
-              <p className='text-center text-white text-sm'>Don't have an account? <Link to={"/signup"}><span className='text-[#55E2CA]'>Sign up</span></Link></p>
+              <p className='text-center text-white text-sm'>Have an account? <Link to='/login'><span className='text-[#55E2CA]'>Login</span></Link></p>
             </div>
           </div>
         </div>
@@ -93,4 +119,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

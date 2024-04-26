@@ -8,6 +8,9 @@ import Faq from "../Components/Faq";
 import ContactUs from "../Components/ContactUs";
 import Login from "../Components/Login";
 import PricingPlans from "../Components/PricingPlan";
+import HeroSection2 from "../Components/HeroSection2";
+import JustTalk from "../Components/JustTalk";
+import SignUp from "../Components/SignUp";
 
  
 
@@ -30,6 +33,9 @@ function Navigate() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/pricingplan" element={<PricingPlans />} />
+          <Route path="/herosection2" element={<HeroSection2/>} />
+          <Route path="/justtalk" element={<JustTalk/>} />
+          <Route path="/signup" element={<SignUp/>} />
 
 
         </Routes>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <>
@@ -168,9 +169,13 @@ function Footer() {
                     className="rounded-md sm:w-full w-60 px-3 py-1 outline-none"
                     placeholder="sample@gmail.com"
                   />
+
+                  <Link to='/signup'>
                   <button className="text-black-500 text-sm font-bold bg-[#55E3CB] sm:w-full w-60 rounded-lg px-3 py-1.5 mt-2">
                     SIGN UP FOR FREE
                   </button>
+
+                  </Link>
                 </li>
               </nav>
             </div>

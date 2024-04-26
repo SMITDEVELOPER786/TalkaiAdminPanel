@@ -71,9 +71,11 @@ function Navbar() {
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/pricingplan"}>PRICING</Link></li>
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/faq"}>FAQs</Link></li>
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/login"}>LOGIN</Link></li>
-            <li className="text-black-500 font-bold bg-[#55E3CB] hover:bg-white duration-200 rounded-full px-5 py-2">
+           <Link to='/signup'>
+           <li className="text-black-500 font-bold bg-[#55E3CB] hover:bg-white duration-200 rounded-full px-5 py-2">
               SIGN UP FOR FREE
             </li>
+           </Link>
           </ul>
         </nav>
 

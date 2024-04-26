@@ -8,6 +8,9 @@ import Login from "./Components/Login";
 import ContactUs from "./Components/ContactUs";
 import Faq from "./Components/Faq";
 import HeroSection from "./Components/HeroSection";
+import HeroSection2 from "./Components/HeroSection2";
+import JustTalk from "./Components/JustTalk";
+import SignUp from "./Components/SignUp";
 
 function App() {
   const location = useLocation();
@@ -36,6 +39,9 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/pricingplan" element={<PricingPlans />} />
+        <Route path="/herosection2" element={<HeroSection2/>} />
+        <Route path="/justtalk" element={<JustTalk/>} />
+        <Route path="/signup" element={<SignUp/>} />
 
         <Route path="/home/*" element={<Home />} />
       </Routes>

@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 
 
-function HeroSection() {
+function HeroSection2() {
   return (
     <>
       <section className="">
@@ -32,12 +32,15 @@ function HeroSection() {
             </p>
 
             <div className="p-5 flex flex-col md:justify-start md:items-start  justify-center items-center">
-              <div>
-                <Link to='/herosection2'>
-                <button className="font-bold text-[#55E3CB] hover:bg-[#55E3CB] hover:text-black-500 duration-200 bg-black-500 p-3 rounded-full">
+              <div className="space-x-5 mx-6 ">
+                <button className="font-bold text-[#55E3CB] hover:bg-[#55E3CB] hover:text-black-500 mx-5 duration-200 bg-black-500 p-3 rounded-full">
                   Start a Free Trial
                 </button>
 
+                    <Link to='/justtalk'>
+                <button className="font-bold text-white hover:bg-[#55E3CB] hover:text-black-500 duration-200 my-3 bg-[#FE7E29] p-3 px-8 rounded-full">
+                  Give it a try
+                </button>
                 </Link>
               </div>
               <div className="pt-5">
@@ -90,4 +93,4 @@ function HeroSection() {
   );
 }
 
-export default HeroSection;
+export default HeroSection2;

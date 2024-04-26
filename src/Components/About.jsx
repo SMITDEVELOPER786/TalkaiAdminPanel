@@ -2,8 +2,7 @@ import React, { useRef, useState } from 'react';
 import robot from "../assets/robot.png"
 import star from "../assets/stars.png"
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import profile from "../assets/profile.png"
+ import profile from "../assets/profile.png"
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
