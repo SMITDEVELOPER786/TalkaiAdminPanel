@@ -30,7 +30,7 @@ function Sidebar() {
          <SidebarItem
           icon={<Icon  icon="mdi:feature-search"  width="28" />}
           text="Billing"
-          path="/home/billig"
+          path="/home/billing"
         />
 
         <SidebarItem

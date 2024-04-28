@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState ,Fragment } from "react";
 import hero from "../assets/3d44514d9165df96c04149072765a6e6.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import event from "../assets/event.png"
@@ -12,16 +12,33 @@ import Availability from "./Availability";
 import About from "./About";
 import Blogs from "./Blogs";
 import { Link } from "react-router-dom";
+import Button from "../Common/Button"
+import { Dialog, Transition } from '@headlessui/react'
 
-
+import Button2 from "../Common/Button2"
 
 
 function HeroSection() {
+
+const [click,setClick] =useState(false)
+
+let [isOpen, setIsOpen] = useState(false)
+
+function closeModal() {
+  setIsOpen(false)
+}
+
+function openModal() {
+  setIsOpen(true)
+}
+
+
+
   return (
     <>
       <section className="">
         <div className="flex py-5 md:p-5 p-2 md:flex-row flex-col justify-center items-center">
-          <div className="w-full md:mt-0 mt-20  md:py-0 md:p-5 p-2">
+          <div className="w-full md:mt-0 mt-20 md:px-10  md:py-0 md:p-5 p-2">
             <h1 className="lg:text-6xl md:text-5xl sm:text-3xl text-xl md:text-start text-center font-bold ">
               EVERY CALL IS AN OPPORTUNITY
             </h1>
@@ -32,13 +49,17 @@ function HeroSection() {
             </p>
 
             <div className="p-5 flex flex-col md:justify-start md:items-start  justify-center items-center">
-              <div>
-                <Link to='/herosection2'>
-                <button className="font-bold text-[#55E3CB] hover:bg-[#55E3CB] hover:text-black-500 duration-200 bg-black-500 p-3 rounded-full">
-                  Start a Free Trial
+              <div className="flex items-center gap-2 sm:flex-row flex-col">
+                {/* <Link to='/herosection2'> */}
+                <button onClick={()=>setClick(!click)}>
+                <Button2/>
                 </button>
 
-                </Link>
+
+                <button onClick={openModal} className={`${click == false ? "hidden" :"block"}`}>
+                <Button/>
+                </button>
+                {/* </Link> */}
               </div>
               <div className="pt-5">
                 <h1 className="font-bold">FOLLOW US ON</h1>
@@ -74,6 +95,77 @@ function HeroSection() {
 </div>
 
       </section>
+
+
+
+
+
+
+
+
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative  z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+<div className="fixed inset-0 bg-black-500 bg-opacity-50 backdrop-blur-sm" />
+          </Transition.Child>
+
+          <div className="fixed  inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="  max-w-md transform overflow-hidden   p-6 text-left  transition-all">
+                   
+                  <div className= " rounded-xl  bg-[#26292E]">
+      <div className="border border-[#55E3CB] text-center w-64 p-5 mx-auto relative">
+      <Icon
+      onClick={closeModal}
+          icon="icomoon-free:cancel-circle"
+          width="16"
+          color="#FE7E29"
+          className="absolute top-0 right-0 mt-2 mr-2 cursor-pointer"
+          height="16"
+        />
+      
+        <h1 className="text-white text-[9px] ">
+          Hi, I'm Ann. You can talk with me now
+        </h1>
+        <div className="bg-[#FE7E29]  w-5 h-0.5   flex justify-center mx-auto" />
+
+        <Icon
+          className="mx-auto my-5"
+          color="#55E3CB"
+          icon="wpf:audio-wave"
+          width="36"
+          height="36"
+        />
+        <h1 className="text-white">Just Talk</h1>
+      </div>
+    </div>
+
+                
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
 
 
 <Service/>

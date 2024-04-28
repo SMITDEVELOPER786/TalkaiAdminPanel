@@ -61,7 +61,7 @@ function CallLogs() {
 
 
 
-<div className='h-[570px] border-gray-500 border bg-[#171717] rounded-xl w-full'> 
+<div className='  border-gray-500 border bg-[#171717] rounded-xl w-full'> 
 
 {/* dropdown and search bar section */}
 
@@ -114,10 +114,10 @@ function CallLogs() {
 <div className="overflow-y-auto max-h-96">
       {callRecords.map((record, index) => (
         <CallRecord key={index} {...record} />
+     
       ))}
     </div>
 </div>
-
 
 
 

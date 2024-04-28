@@ -16,32 +16,27 @@ function Home() {
   const sidebarWidth = '280px';
 
   return (
-    <div className='bg-[#26292E]'>
-   
-    <div className=' flex-row h-screen md:flex hidden'>
-      {/* Fixing the sidebar */}
-      <div style={{ width: sidebarWidth, position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 1000 }} className='md:block hidden'>
-        <Sidebar />
-      </div>
-
-      {/* Adjusting the content area to account for the fixed sidebar */}
-      <div style={{ marginLeft: sidebarWidth, flex: 1, overflowY: 'auto' }} className='md:block hidden' >
-        
-        <Routes>
-          <Route path='/assistants' element={<Assistants />} />
-          <Route path='/phone' element={<PhoneNumber />} />
-          <Route path='/call' element={<CallLogs />} />
-          <Route path='/voice' element={<VoiceLibrary />} />
-          <Route path='/billig' element={<Billing />} />
-          <Route path='/account' element={<Account />} />
-          <Route path='/resources' element={<Resources />} />
-          <Route path='/help' element={<Help />} />
-        </Routes>
-      </div>
-   
-
-    
+    <div className='bg-[#26292E] h-screen flex'>
+    {/* Sidebar */}
+    <div style={{ width: sidebarWidth, zIndex: 10 }} className='md:block hidden  overflow-y-auto '>
+      <Sidebar />
     </div>
+  
+    {/* Content area */}
+    <div style={{ flex: 1 }} className='overflow-y-auto  bg-opacity-50 backdrop-blur-xl'>
+      <Routes>
+        <Route path='/assistants' element={<Assistants />} />
+        <Route path='/phone' element={<PhoneNumber />} />
+        <Route path='/call' element={<CallLogs />} />
+        <Route path='/voice' element={<VoiceLibrary />} />
+        <Route path='/billing' element={<Billing />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/resources' element={<Resources />} />
+        <Route path='/help' element={<Help />} />
+      </Routes>
+    </div>
+
+  
 
 
     <div className="flex flex-col h-screen"> {/* Ensuring full height */}

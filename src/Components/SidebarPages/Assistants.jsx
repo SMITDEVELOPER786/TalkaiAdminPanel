@@ -13,7 +13,9 @@ function Assistants() {
   const [tab,settab]=useState(false)
   const cancelButtonRef = useRef(null)
   return (
-    <div>
+    <div className=''>
+
+
     <header className='flex justify-between items-center px-4 my-4'>
   <div className='leading-5 text-start'>
     <h1 className='text-[18px] md:text-2xl text-[#55E3CB]'>Assistants</h1> {/* Text size changes with screen size */}
@@ -26,10 +28,13 @@ function Assistants() {
     </div>
   </div>
 </header>
+
+
+
 <div className=" mx-auto w-[98%] bg-[#171717] h-0.5 "></div>
 
-<div className='flex lg:flex-row flex-col px-5 gap-2 mt-1 h-[570px]'>
-<div className='w-full lg:w-[20%] border border-gray-500 rounded-md  '>
+<div className='flex lg:flex-row flex-col px-5 gap-2 mt-1   '>
+<div className='w-full lg:w-[20%] border border-gray-500 rounded-md   '>
 
 <div className="flex items-center bg-[#171717] px-2 mx-2 my-2 rounded ">
   <span className="mr-4 text-white">Ava</span> {/* "Ava" on the left side */}
