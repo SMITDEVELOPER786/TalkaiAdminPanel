@@ -10,6 +10,7 @@ import Resources from './SidebarPages/Resources';
 import { Route, Routes } from 'react-router-dom';
 import Help from './Help';
 import SmallNavbar from './SmallNavbar';
+import Sms from './SidebarPages/Sms';
 
 function Home() {
   // Set a fixed width for the sidebar
@@ -28,6 +29,8 @@ function Home() {
         <Route path='/assistants' element={<Assistants />} />
         <Route path='/phone' element={<PhoneNumber />} />
         <Route path='/call' element={<CallLogs />} />
+        <Route path='/sms' element={<Sms />} />
+
         <Route path='/voice' element={<VoiceLibrary />} />
         <Route path='/billing' element={<Billing />} />
         <Route path='/account' element={<Account />} />

@@ -24,8 +24,9 @@ function App() {
       {location.pathname != "/home/assistants" &&
       location.pathname != "/home/phone" &&
       location.pathname != "/home/call" &&
+      location.pathname != "/home/sms" &&
       location.pathname != "/home/voice" &&
-      location.pathname != "/home/billig" &&
+      location.pathname != "/home/billing" &&
       location.pathname != "/home/account" &&
       location.pathname != "/home/resources" &&
       location.pathname != "/home/help" ? (
@@ -49,8 +50,9 @@ function App() {
       {location.pathname != "/home/assistants" &&
       location.pathname != "/home/phone" &&
       location.pathname != "/home/call" &&
+      location.pathname != "/home/sms" &&
       location.pathname != "/home/voice" &&
-      location.pathname != "/home/billig" &&
+      location.pathname != "/home/billing" &&
       location.pathname != "/home/account" &&
       location.pathname != "/home/resources" &&
       location.pathname != "/home/help" ? (

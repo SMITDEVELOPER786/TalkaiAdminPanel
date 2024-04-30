@@ -1,7 +1,18 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useState } from "react";
 
 function Billing() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <header className="flex justify-between items-center px-4 my-4">
@@ -28,7 +39,7 @@ function Billing() {
                 Select your payment method
               </p>
 
-              <div className="flex gap-3">
+              <div className="flex items-center gap-3">
                 <select
                   name=""
                   id=""
@@ -40,9 +51,26 @@ function Billing() {
                   <option value="">Demo</option>
                 </select>
 
-                <button className="px-4  rounded-lg text-sm bg-[#53DCC5]">
+                <button className="px-4 py-2 rounded-lg text-sm bg-[#53DCC5]">
                   Pay Now
                 </button>
+
+
+               <div className="relative inline-block">
+      <button className="cursor-pointer h-8  rounded-full p-2" onClick={toggleDropdown}>
+      <Icon  color="gray" className="cursor-pointer h-8 bg-[#171717]" height={"18"} width={"18"} icon="vaadin:ellipsis-dots-v" />
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 bg-[#171717] text-white rounded-md shadow-lg z-10" onClick={closeDropdown}>
+          <a href="#" className="block px-4 py-2 text-sm   ">Payment History</a>
+          <a href="#" className="block px-4 py-2 text-sm   ">Payment Method</a>
+          <a href="#" className="block px-4 py-2 text-sm   ">Change Plan</a>
+        </div>
+      )}
+    </div>
+
+
+
               </div>
 
               <p className="text-white text-xs pt-2">

@@ -15,7 +15,7 @@ export default function SidebarWork({ children }) {
   return (
     <>
       <aside
-        className={`h-full mx-5 my-3 shadow-black shadow-2xl rounded-[33px]   bg-[#26292E] ${
+        className={`h-full mx-5 my-3 shadow-black shadow-r-[5px] shadow-lg shadow-[#55E3CB] rounded-[33px]   bg-[#26292E] ${
           expanded ? "w-64 " : "w-20"
         }`}
       >
@@ -38,7 +38,7 @@ export default function SidebarWork({ children }) {
             <ul className="flex-1 px-3">
               {React.Children.map(children, (child, index) => (
                 <li
-                  className={` ${index > 3 && index == 4 ? "mt-[105px]" : ""}`} // 4th ke baad mt-10
+                  className={` ${index > 4 && index == 6 ? "mt-[105px]" : ""}`} // 4th ke baad mt-10
                 >
                   {child}
                 </li>
