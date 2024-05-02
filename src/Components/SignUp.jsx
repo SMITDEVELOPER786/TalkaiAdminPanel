@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState,Fragment } from 'react';
 import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { Toaster,toast } from 'sonner';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register_user_post_async } from '../Store/Service/AuthService';
+import { Dialog, Transition } from '@headlessui/react'
+import OtpInput from 'react-otp-input';
 
 
 function SignUp() {
 
+  let [isOpen, setIsOpen] = useState(false)
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
 
 
 const nav = useNavigate()
 
 const dispatch = useDispatch()
+
+const [otp, setOtp] = useState('');
 
 
   const [formData, setFormData] = useState({
@@ -24,12 +37,17 @@ const dispatch = useDispatch()
   });
 
   const handleChange =  (e) => {
+
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
     });
   };
+
+
+ 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +82,8 @@ const dispatch = useDispatch()
           
           toast.success(res.payload.message)
           setTimeout(() => {
-            nav("/login")
+            openModal()
+            // nav("/login")
 
           }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
             
@@ -93,6 +112,25 @@ const dispatch = useDispatch()
 
 
   };
+
+
+const handleVerifyOtp = ()=>{
+
+console.log(otp)
+
+nav("/login")
+
+
+closeModal()
+
+
+
+
+}
+
+
+
+
 
   return (
     <div className='bg-main py-20 relative'>
@@ -201,6 +239,80 @@ const dispatch = useDispatch()
           </div>
         </div>
       </section>
+
+
+
+
+
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black-500 bg-opacity-50 backdrop-blur-sm" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#26292E] p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-[#55E3CB]"
+                  >
+                     Please Verify Your OTP
+                  </Dialog.Title>
+       <div className="mt-2">
+       <OtpInput
+      value={otp}
+      onChange={setOtp}
+      numInputs={6}
+      
+      renderSeparator={<span>-</span>}
+      renderInput={(props) => <input {...props} className='!w-full h-14 rounded-lg' />}
+    />
+       </div>
+
+
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={handleVerifyOtp}
+                    >
+                      Verify your otp
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+
+
+
+
+
+
+
+
     </div>
   );
 }
