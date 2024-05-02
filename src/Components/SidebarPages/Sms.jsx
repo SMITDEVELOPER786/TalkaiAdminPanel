@@ -51,12 +51,12 @@ function Sms() {
   <div className="flex-grow">
     <h1 className='text-white text-base p-1'>scenario description</h1>
     <h1 className='text-white text-sm p-1'>scenario name</h1>
-    <input type="text" placeholder='Name' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
+    <input type="text" placeholder='Your Name' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
   </div>
 
-  <div className='mt-6 flex-grow'>
-    <h1 className='text-white text-sm p-1'>scenario name</h1>
-    <input type="text" placeholder='Name' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
+  <div className='mt-8 flex-grow'>
+    <h1 className='text-white text-sm p-1'>describe the scenario in which would like to send text message.</h1>
+    <input type="text" placeholder='Your Rule' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
   </div>
 
   <div className='bg-[#55E3CB] rounded-sm h-20 px-0.5 flex items-center justify-center'>
@@ -68,8 +68,8 @@ function Sms() {
 <div className=' w-full gap-5 py-3 px-5 bg-[#26292E] flex flex-col md:flex-row md:items-center'>
  
   <div className='mt-6 flex-grow'>
-    <h1 className='text-white text-sm p-1'>scenario name</h1>
-    <input type="text" placeholder='Name' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
+    <h1 className='text-white text-sm p-1'>Enter the text message to be send to user when this scenario in triggered. </h1>
+    <input type="text" placeholder='Your Message' className='bg-[#171717] rounded-lg w-full placeholder:px-2 placeholder:text-gray-500 p-1 placeholder:text-sm' />
   </div>
 
   <div className='bg-orange-600 rounded-sm  h-20 px-0.5 flex items-center justify-center'>
@@ -116,7 +116,7 @@ function Sms() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-3xl border-[#55E3CB] border transform overflow-hidden rounded-2xl bg-[#26292E] p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-3xl border-[#55E3CB] border transform overflow-hidden rounded-2xl bg-[#26292E] p-6 text-left align-middle shadow-[#55E3CB] shadow-2xl  transition-all">
                 <button className="absolute top-2 right-2 text-gray-300 hover:text-gray-400" onClick={closeModal}>
                 <Icon icon="entypo:cross" color='orange' />
             </button>

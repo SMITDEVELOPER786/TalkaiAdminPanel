@@ -1,9 +1,26 @@
 import { Icon } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useState ,Fragment} from "react";
+import { Dialog, Transition } from '@headlessui/react'
 
 function Billing() {
 
   const [isOpen, setIsOpen] = useState(false);
+
+  let [modalOpen, setModalOpen] = useState(true)
+  const [isChecked, setIsChecked] = useState(true);
+
+    function closeModal() {
+      setModalOpen(false)
+    }
+  
+    function openModal() {
+      setModalOpen(true)
+    }
+
+
+
+
+
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -162,65 +179,153 @@ function Billing() {
 
 
 
-          {/* <div class="overflow-x-auto">
-            <table class="w-[100%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-[#26292E] w-full">
-                <tr class="flex text-white w-full">
-                  <th scope="col" class="px-6 py-3 flex-1">
-                    <div class="flex items-center">
-                      <Icon
-                        class="text-orange-500 h-5 w-5"
-                        icon="simple-line-icons:calendar"
-                      />
-                      <span class="ml-1">Date:</span>
-                    </div>
-                  </th>
+         {/* Modal Start */}
+<Transition appear show={modalOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black-500 bg-opacity-50 backdrop-blur-sm" />
+          </Transition.Child>
 
-                  <th scope="col" class="px-6 py-3 flex-1">
-                    <div class="flex items-center">
-                      <Icon
-                        class="text-orange-500 h-5 w-5"
-                        icon="fa-solid:clock"
-                      />
-                      <span class="ml-1">Minutes:</span>
-                    </div>
-                  </th>
-
-                  <th scope="col" class="px-6 py-3 flex-1">
-                    <div class="flex items-center">
-                      <Icon
-                        class="text-orange-500 h-5 w-5"
-                        icon="fa-solid:money-bill"
-                      />
-                      <span class="ml-1">Cost:</span>
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-
-              <br />
-              <tbody>
-                <tr class=" bg-[#26292E]  text-white">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium  whitespace-nowrap dark:text-white"
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-3xl border-[#55E3CB] border transform overflow-hidden rounded-2xl bg-[#26292E] p-6 text-left align-middle shadow-[#55E3CB] shadow-2xl  transition-all">
+                <button className="absolute top-2 right-2 text-gray-300 hover:text-gray-400" onClick={closeModal}>
+                <Icon icon="entypo:cross" color='orange' />
+            </button>
+                  <Dialog.Title
+                    as="h3"
+                    className="text-xl font-medium leading-6 text-[#55E3CB]"
                   >
-                    2024-03-06
-                  </th>
-                  <td class="px-6 py-4">02:10 </td>
-                  <td class="px-6 py-4"></td>
-                  <td class="px-6 py-4">$5.20</td>
-                </tr>
-                <br />
+                    Delicately drafted plans which suits your need!
+                  </Dialog.Title>
+                  <div className="mt-2">
+ 
 
-                <br />
-              </tbody>
-            </table>
-          </div> */}
+                <div>
+                  <p className="text-white text-sm pt-4">subscription plane</p>
+                  <div className="flex gap-x-3 w-full">
+
+                    <div className="w-[68%] mt-2">
+<select className='bg-[#171717] rounded-lg w-full text-gray-500 text-sm  p-1'>
+    <option value="" className='text-gray-500'>Elevate</option>
+</select>
+  </div>
+                 
+                 
+                 
+                    <div className="w-[28%] mt-2">
+                    <select className='bg-[#171717] rounded-lg w-full text-gray-500 text-sm  p-1'>
+    <option value="" className='text-gray-500'>Monthly</option>
+</select>
+
+
+                    </div>
 
 
 
 
+                  </div>
+
+<hr  className="my-3" />
+
+<div>
+  <p className="text-white font-bold text-sm">Payment Method</p>
+  <p className="text-gray-300 text-xs py-1">Card Details</p>
+
+
+
+
+
+
+  <div className="bg-[#171717] flex p-2 justify-between items-center rounded-md">
+
+<div className="flex items-center flex-1">
+  <Icon icon="grommet-icons:credit-card" color="white" />
+  <input type="text" className="bg-transparent outline-none placeholder:text-sm px-3" placeholder="Card Number" />
+</div>
+
+<div className="flex items-center flex-1 text-right">
+  <input type="text" className="bg-transparent outline-none placeholder:text-sm px-3" placeholder="MM/YY" />
+  <input type="text" className="bg-transparent outline-none placeholder:text-sm px-3" placeholder="CVC" />
+
+  <div className="bg-[#171717]  flex items-center">
+    <input 
+      type="checkbox" 
+      id="agree" 
+      checked={isChecked} 
+      onChange={(e) => setIsChecked(e.target.checked)}  
+      className="h-7 w-7 mt-1 opacity-0 absolute top-0 left-0"
+    />
+    <label className="h-7 w-7 mt-1 bg-black relative" htmlFor="agree">
+      {isChecked && (
+        <Icon 
+          icon="fa-solid:check" 
+          className="text-green-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
+        />
+      )}
+    </label>
+  </div>
+
+</div>
+</div>
+
+
+
+<div className="flex gap-x-2 float-right mt-5">
+
+<button className="bg-[#55E3CB] px-3 rounded-md">Pay Now</button>
+
+<p className="text-white font-bold text-xl">$20.00</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+  
+  {/* <button onClick={closeModal} className='bg-[#55E3CB] px-3 py-1 rounded-md float-right'>Create</button> */}
+
+
+
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
 
 
 

@@ -1,19 +1,54 @@
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
 import logo from "../assets/logo.png";
 import React, { createContext, useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useDispatch } from "react-redux";
+import { logout_user_post_async } from "../Store/Service/AuthService";
+import { toast,Toaster } from "sonner";
+
+
 const SidebarContext = createContext();
 
 export default function SidebarWork({ children }) {
   const location = useLocation();
   const [expanded, setExpanded] = useState(true);
 
+const dispatch = useDispatch()
+
+const nav = useNavigate()
+
   // Get the count of children
   const childrenCount = React.Children.count(children);
 
+
+
+const handleLogout = () =>{
+
+  dispatch(logout_user_post_async())
+.then((res)=>{
+  console.log(res)
+
+  if(res.payload.message){
+
+    toast.success(res.payload.message)
+
+    setTimeout(() => {
+      nav("/" ,{ replace: true })
+    }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+  }
+
+
+}) 
+
+ }
+
+
+
+
   return (
     <>
+    <Toaster position="top-right"/>
       <aside
         className={`h-full mx-5 my-3 shadow-black shadow-r-[5px] shadow-lg shadow-[#55E3CB] rounded-[33px]   bg-[#26292E] ${
           expanded ? "w-64 " : "w-20"
@@ -57,13 +92,13 @@ export default function SidebarWork({ children }) {
           </div>
 
           <div className="  px-3   ">
-            <Link to="/">
-              <div className="flex bg-[#171717] rounded-lg py-2 px-3 my-1 gap-4 text-[#55E3CB]">
+        
+              <div onClick={handleLogout} className="flex bg-[#171717] rounded-lg cursor-pointer py-2 px-3 my-1 gap-4 text-[#55E3CB]">
                 <Icon icon="material-symbols:logout" width="26" />
 
                 <span className=" text-[18px]">Logout</span>
               </div>
-            </Link>
+           
           </div>
 
           <span className="text-white mb-5 text-[12px] text-center">

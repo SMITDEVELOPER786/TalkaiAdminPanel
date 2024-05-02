@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { asyncStatus } from "../../Utils/Async_Status"
 import {
-  activities_async,
-  categories_async,
+ 
+ 
   login_user_post_async,
   logout_user_post_async,
   register_user_post_async,
-  update_profile_post_async,
-} from "../Service/AuthService";
+ } from "../Service/AuthService";
 
 const initialState = {
   // user Register
@@ -26,21 +25,7 @@ const initialState = {
   user_logout_status: asyncStatus.IDLE,
   logout_error: null,
 
-  // activities_
-  activities_status:asyncStatus.IDLE,
-  activities_data:null,
-  activities_error:null,
-// categories
-categories_status:asyncStatus.IDLE,
-categories_data:null,
-categories_error:null,
-
-
-// update profile
-update_profile_status:asyncStatus.IDLE,
-update_profile_data:null,
-update_profile_error:null
-
+ 
 
 };
 
@@ -69,9 +54,7 @@ const userAuthSlice = createSlice({
       state.user_register_status = asyncStatus.LOADING;
       state.register_error = null;
     });
-    builder.addCase(
-      register_user_post_async.fulfilled,
-      (state, { payload }) => {
+    builder.addCase(register_user_post_async.fulfilled,(state, { payload }) => {
         state.user_register_status = asyncStatus.SUCCEEDED;
         state.register_user = payload.success;
         state.register_data = payload.data;
@@ -126,56 +109,9 @@ const userAuthSlice = createSlice({
       state.logout_error = error ? error.message : "Unknown error"; // Set the logout error message
     });
 
-  // Case for activities pending
+ 
 
-  builder.addCase(activities_async.pending, (state) => {
-    state.activities_status =  asyncStatus.LOADING;
-  });
-
-  // Case for activities success
-  builder.addCase(activities_async.fulfilled, (state, action) => {
-    state.activities_status =  asyncStatus.SUCCEEDED;;
-    state.activities_data = action?.payload.data;
-  });
-
-  // Case for activities failure
-  builder.addCase(activities_async.rejected, (state, action) => {
-    state.activities_status =  asyncStatus.ERROR;
-    state.activities_error = action.error.message;
-  });
-
-// cat
-builder.addCase(categories_async.pending, (state) => {
-  state.categories_status = true;
-  state.categories_error = null;
-})
-builder.addCase(categories_async.fulfilled, (state, action) => {
-  state.categories_status = false;
-  state.categories_data = action.payload.data;
-
-})
-builder.addCase(categories_async.rejected, (state, action) => {
-  state.categories_status = false;
-  state.categories_error = action.error.message;
-});
-
-
-// update profile
-builder.addCase(update_profile_post_async.pending, (state) => {
-  state.update_profile_status = true;
-  state.update_profile_error = null;
-})
-builder.addCase(update_profile_post_async.fulfilled, (state, action) => {
-  state.update_profile_status = false;
-  state.update_profile_data = action.payload.data;
-
-})
-builder.addCase(update_profile_post_async.rejected, (state, action) => {
-  state.update_profile_status = false;
-  state.update_profile_error = action.error.message;
-});
-
-
+ 
 
 
 

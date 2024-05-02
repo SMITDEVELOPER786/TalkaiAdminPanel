@@ -4,7 +4,12 @@ import { type_constants } from "./Constant";
 
 // const customMiddleware = ...
 
+import userAuthSlice from "./Slice/AuthSlice"
+
+
+
 const reducers = combineReducers({
+  auth: userAuthSlice,
 
 
 });

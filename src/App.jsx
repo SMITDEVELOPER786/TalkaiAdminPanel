@@ -11,6 +11,7 @@ import HeroSection from "./Components/HeroSection";
 import HeroSection2 from "./Components/HeroSection2";
 import JustTalk from "./Components/JustTalk";
 import SignUp from "./Components/SignUp";
+import SignUp2 from "./Components/Signup2";
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/herosection2" element={<HeroSection2/>} />
         <Route path="/justtalk" element={<JustTalk/>} />
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="/signupp" element={<SignUp2/>} />
 
         <Route path="/home/*" element={<Home />} />
       </Routes>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
   import { Icon } from "@iconify/react/dist/iconify.js";
 
   import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Link } from "react-router-dom";
 
 
 
@@ -30,13 +31,13 @@ const [select,setSelect] = useState(true)
             <div class="max-w-full md:max-w-6xl mx-auto my-3 md:px-8">
               <div class="relative  flex flex-col md:flex-row items-center">
 
-              <Tabs>
+              <Tabs className={"mx-auto"}>
       <TabList className={"outline-none border-none flex items-center justify-center font-bold w-80 mx-auto rounded-full shadow-lg bg-main"} >
         <Tab onClick={()=>setSelect(true)} className={`${select ? 'rounded-full !bg-[#55E3CB] ml-1 h-8 pt-1  outline-none w-full my-1 text-center' : 'text-white rounded-full ml-1 h-8 pt-1 text-center  outline-none w-full my-1' }`}>Monthly</Tab>
         <Tab onClick={()=>setSelect(false)} className={`${select ==false ? 'rounded-full !bg-[#55E3CB] mr-1 h-8 pt-1  outline-none w-full my-1 text-center' : 'text-white rounded-full mr-1 h-8 pt-1 text-center  outline-none w-full my-1' }`}>Annually</Tab>
       </TabList>
 
-    <TabPanel className={"flex justify-center flex-col md:flex-row"}>
+    <TabPanel className={"flex justify-center items-center flex-col md:flex-row"}>
 
 
 
@@ -110,12 +111,17 @@ const [select,setSelect] = useState(true)
                     </div>
 
                     <div class=" flex items-center p-8  uppercase">
-                      <button
+                       <button
                         class="mt-3 text-lg font-semibold 
     bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
     px-6 py-3 block shadow-xl hover:bg-gray-700"
                       >
-                        Select
+                      
+                        <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
+                      
                       </button>
                     </div>
                   </div>
@@ -204,7 +210,10 @@ const [select,setSelect] = useState(true)
                       hover:bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
     px-6 py-3 block shadow-xl bg-gray-700"
                     >
-                      Select
+                          <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
                     </button>
                   </div>
                 </div>
@@ -283,7 +292,10 @@ const [select,setSelect] = useState(true)
                         bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
     px-6 py-3 block shadow-xl hover:bg-gray-700"
                       >
-                        Select
+                            <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
                       </button>
                     </div>
                   </div>
@@ -372,7 +384,10 @@ const [select,setSelect] = useState(true)
 bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
 px-6 py-3 block shadow-xl hover:bg-gray-700"
       >
-        Select
+            <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
       </button>
     </div>
   </div>
@@ -461,7 +476,10 @@ px-6 py-3 block shadow-xl hover:bg-gray-700"
       hover:bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
 px-6 py-3 block shadow-xl bg-gray-700"
     >
-      Select
+          <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
     </button>
   </div>
 </div>
@@ -540,13 +558,19 @@ px-6 py-3 block shadow-xl bg-gray-700"
         bg-[#FE7E29] duration-200 w-full text-white rounded-lg 
 px-6 py-3 block shadow-xl hover:bg-gray-700"
       >
-        Select
+            <Link to={"/signupp"}>
+                        Subscribe
+                           
+                        </Link>
       </button>
     </div>
   </div>
 </div>
 
 </TabPanel>
+
+
+
   </Tabs>
 
               </div>

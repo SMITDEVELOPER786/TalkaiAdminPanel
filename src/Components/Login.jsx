@@ -3,7 +3,8 @@ import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link,useNavigate } from 'react-router-dom';
 import { Toaster, toast } from 'sonner'
-
+import { useDispatch } from 'react-redux';
+import { login_user_post_async } from '../Store/Service/AuthService';
 
 
 
@@ -12,6 +13,7 @@ function Login() {
 
 const nav = useNavigate()
 
+const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -48,23 +50,46 @@ const nav = useNavigate()
     else if(!formData.password){
       toast.error('Please enter Password.');
 
-    }else{
+    }else if(formData.email && formData.password) {
 
+      const post_data = {
+        email:formData.email,
+        password:formData.password
+      }
+
+      console.log(post_data)
+
+      await dispatch(login_user_post_async(post_data))
+      .then((res)=>{
+        // toast.success(res.error.message)
+ 
+            if(res?.payload?.message){
+          
+          toast.success(res.payload.message)
+          setTimeout(() => {
+            nav("/home/assistants")
+
+          }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+            
+        
+        }else{
+          toast.warning(res.error.message)
+        }
+      
+
+
+
+
+
+
+      })
+      .catch(e => {
+      
+        console.log(e,"....");
+      });
 
       
-    // Simulate an asynchronous operation, such as API call, with a promise
-    const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 2000));
   
-    // Display a loading toast while waiting for the promise to resolve
-    toast.promise(promise(), {
-      loading: 'Loading...',
-      success: () => {
-        return 'Successfully Logged In';
-      },
-      error: 'Error',
-    });
-  
-    nav("/home/assistants")
     
   }
   

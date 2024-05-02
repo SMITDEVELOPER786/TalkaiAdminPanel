@@ -240,7 +240,7 @@ function Account() {
     type="checkbox" 
     id="agree" 
     checked={isChecked} 
-    onChange={(e) => setIsChecked(e.target.checked)} 
+    onChange={(e) => setIsChecked(e.target.checked)}  
     className="h-7 w-7 mt-1 opacity-0 absolute top-0 left-0"
   />
   <label className="h-7 w-7 mt-1 bg-black relative" htmlFor="agree">

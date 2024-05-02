@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 
-const baseURL = 'https://travel-journal-api-bootcamp.do.dibimbing.id/'
+const baseURL = 'https://talkai-backend-847736e7f421.herokuapp.com/api/users'
 
 
 
@@ -11,8 +11,7 @@ export const apiHandle = axios.create({
     baseURL,
     headers: {
       'Content-Type': 'application/json',
-      'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c'
-
+ 
      
     },
   

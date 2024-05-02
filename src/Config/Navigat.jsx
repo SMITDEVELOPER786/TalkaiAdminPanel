@@ -11,6 +11,7 @@ import PricingPlans from "../Components/PricingPlan";
 import HeroSection2 from "../Components/HeroSection2";
 import JustTalk from "../Components/JustTalk";
 import SignUp from "../Components/SignUp";
+import SignUp2 from "../Components/Signup2";
 
  
 
@@ -37,6 +38,7 @@ function Navigate() {
           <Route path="/justtalk" element={<JustTalk/>} />
           <Route path="/signup" element={<SignUp/>} />
 
+          <Route path="/signupp" element={<SignUp2/>} />
 
         </Routes>
  

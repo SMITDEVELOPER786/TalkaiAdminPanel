@@ -1,5 +1,7 @@
 export const type_constants = {
     REGISTER_USER: 'REGISTER_USER',
+    LOGIN_USER: 'LOGIN_USER',
+
     LOGOUT_USER:'LOGOUT_USER',
   
  

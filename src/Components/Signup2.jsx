@@ -3,18 +3,12 @@ import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { Toaster,toast } from 'sonner';
-import { useDispatch,useSelector } from 'react-redux';
-import { register_user_post_async } from '../Store/Service/AuthService';
 
 
-function SignUp() {
 
-
+function SignUp2() {
 
 const nav = useNavigate()
-
-const dispatch = useDispatch()
-
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +17,7 @@ const dispatch = useDispatch()
     password: ''
   });
 
-  const handleChange =  (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -31,7 +25,7 @@ const dispatch = useDispatch()
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!formData.name) {
@@ -46,46 +40,20 @@ const dispatch = useDispatch()
       toast.error("Please enter your Phone Number")
     }
 
-    else if(formData.name && formData.email && formData.password && formData.contact){
+    else{
 
-      const post_data ={
-        name:formData.name,
-        email:formData.email,
-        phone:formData.contact,
-        password:formData.password
-      }
+      const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 2000));
 
 
-      await  dispatch(register_user_post_async(post_data))
-      .then(res => {
-        // toast.success(res.error.message)
-
-        if(res?.payload?.message){
-          
-          toast.success(res.payload.message)
-          setTimeout(() => {
-            nav("/login")
-
-          }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
-            
-        
-        }else{
-          toast.warning(res.error.message)
-        }
-      
-
-   
-      })
-      .catch(e => {
-      console.log(e);
-    
-      });
-      
-      
-      
- 
-
- 
+    // Display a loading toast while waiting for the promise to resolve
+    toast.promise(promise(), {
+      loading: 'Loading...',
+      success: () => {
+        return 'Successfully Logged In';
+      },
+      error: 'Error',
+    });
+      nav("/home/billing")
     }
 
 
@@ -205,4 +173,4 @@ const dispatch = useDispatch()
   );
 }
 
-export default SignUp;
+export default SignUp2;
