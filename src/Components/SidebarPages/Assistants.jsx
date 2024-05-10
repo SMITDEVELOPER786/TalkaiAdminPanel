@@ -7,11 +7,126 @@ import Ai from "../../assets/Ai.png"
 import Plus from "../../assets/Plus.png"
 import 'react-tabs/style/react-tabs.css';
 import "../../App.css"
+import { useDispatch } from 'react-redux';
+import { create_assistant } from '../../Store/Service/PhoneService';
 function Assistants() {
   const [open, setOpen] = useState(false)
 
   const [tab,settab]=useState(false)
   const cancelButtonRef = useRef(null)
+
+const dispatch = useDispatch()
+
+
+
+const [seller,setSeller] = useState("Appointment Seller")
+
+const [support,setSupport] = useState("Customer Support")
+
+const [qa,setqa] = useState("Inbound Q/A")
+
+const [npc,setnpc] = useState("Game NPC")
+
+const [blank,setblank] = useState("New Assistant")
+
+
+const [name,setname]=useState("")
+
+
+
+const handleCreate =async ()=>{
+console.log(name);
+const post_data={
+  "transcriber": {
+    "provider": "deepgram",
+    "model": "nova-2",
+    "language": "cs",
+    "keywords": ["keyword1", "keyword2"]
+  },
+  "model": {
+    "messages": [
+      {
+        "content": "content",
+        "role": "assistant",
+        "function_call": {},
+        "tool_calls": [{}]
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-4-1106-preview",
+    "fallbackModels": ["gpt-4-0125-preview", "gpt-4-0613"],
+    "semanticCachingEnabled": true,
+    "temperature": 1,
+    "functions": [
+      {
+        "name": "functionName",
+        "async": true,
+        "description": "functionDescription",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": ["property1", "property2"]
+        },
+        "serverUrl": "https://example.com",
+        "serverUrlSecret": "serverUrlSecret"
+      }
+    ],
+    "maxTokens": 525
+  },
+  "voice": {
+    "provider": "azure",
+    "voiceId": "andrew",
+    "speed": 1.25
+  },
+  "forwardingPhoneNumber": "+923173186615",
+  "recordingEnabled": true,
+  "endCallFunctionEnabled": true,
+  "dialKeypadFunctionEnabled": true,
+  "hipaaEnabled": true,
+  "clientMessages": ["transcript", "hang", "function-call", "speech-update", "metadata", "conversation-update"],
+  "serverMessages": ["end-of-call-report", "status-update", "hang", "function-call"],
+  "silenceTimeoutSeconds": 30,
+  "responseDelaySeconds": 0.4,
+  "llmRequestDelaySeconds": 0.1,
+  "numWordsToInterruptAssistant": 2,
+  "maxDurationSeconds": 1800,
+  "backgroundSound": "office",
+  "name": "modelName",
+  "forwardingPhoneNumbers": [{"number": "+923173186615", "sipUri": "sipUri", "message": "message"}],
+  "firstMessage": "firstMessage",
+  "voicemailDetectionEnabled": true,
+  "voicemailMessage": "voicemailMessage",
+  "endCallMessage": "endCallMessage",
+  "endCallPhrases": ["phrase1", "phrase2"],
+  "metadata": {},
+  "serverUrl": "https://example.com",
+  "serverUrlSecret": "serverUrlSecret"
+}
+
+
+
+  
+await dispatch(create_assistant(post_data))
+.then((res)=>{
+  console.log(res);
+  setOpen(false)
+})
+.catch(e=>{
+  console.log(e);
+})
+
+
+
+}
+
+
+
+
+
+
+
+
+
   return (
     <div className=''>
 
@@ -313,41 +428,36 @@ function Assistants() {
                 </div>
                 <div className='bg-black-500  grid  md:grid-cols-5 sm:grid-cols-3 grid-cols-2   gap-5 mb-20'>
                   
-                <div className='space-y-2  flex flex-col items-center'>
-      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+                <div className='space-y-2  flex flex-col items-center' onClick={()=>setname(seller)}>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full hover:bg-gray-50 cursor-pointer duration-200 flex-shrink-0'>
         <img src={Ai} alt="" className='rounded-full' />
       </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+      <h1 className='text-white text-xs text-center md:text-left'>{seller}</h1>
     </div>
-    <div className='space-y-2  flex flex-col items-center'>
-      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+    <div className='space-y-2  flex flex-col items-center' onClick={()=>setname(support)}>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full hover:bg-gray-50 cursor-pointer duration-200 flex-shrink-0'>
         <img src={Ai} alt="" className='rounded-full' />
       </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+      <h1 className='text-white text-xs text-center md:text-left'>{support}</h1>
     </div>
-    <div className='space-y-2  flex flex-col items-center'>
-      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+    <div className='space-y-2  flex flex-col items-center' onClick={()=>setname(qa)}>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full hover:bg-gray-50 cursor-pointer duration-200 flex-shrink-0'>
         <img src={Ai} alt="" className='rounded-full' />
       </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+      <h1 className='text-white text-xs text-center md:text-left'>{qa}</h1>
     </div>
-    <div className='space-y-2  flex flex-col items-center'>
-      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
+    <div className='space-y-2  flex flex-col items-center' onClick={()=>setname(npc)}>
+      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full  hover:bg-gray-50 cursor-pointer duration-200 flex-shrink-0'>
         <img src={Ai} alt="" className='rounded-full' />
       </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+      <h1 className='text-white text-xs text-center md:text-left'>{npc}</h1>
     </div>
-    <div className='space-y-2 flex flex-col items-center'>
-      <div className='p-2 border-2 bg-[#26292e] border-[#55E3CB] rounded-full flex-shrink-0'>
-        <img src={Ai} alt="" className='rounded-full' />
-      </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
-    </div>
-    <div className='space-y-2  flex flex-col justify-center items-center'>
-      <div className='p-[27px] border-2 bg-[#26292e]  rounded-full flex-shrink-0'>
+ 
+    <div className='space-y-2  flex flex-col justify-center items-center cursor-pointer ' onClick={()=>setname(blank)}>
+      <div className='p-[27px] border-2 bg-[#26292e] hover:bg-gray-50 duration-200 rounded-full flex-shrink-0'>
         <img src={Plus} alt="" className='rounded-full' />
       </div>
-      <h1 className='text-white text-xs text-center md:text-left'>Lorem Ipsum</h1>
+      <h1  className='text-white text-xs text-center md:text-left'>{blank}</h1>
     </div>
 
                   </div>    
@@ -396,7 +506,7 @@ function Assistants() {
 <h1 className='text-white text-xs text-center'>Lorem Ipsum</h1>
 </div>
 <div className='w-full space-y-5'>
-  <input type="text" className='w-full bg-[#26292E] rounded-lg py-2 pl-3' style={{ fontSize: '12px' }} placeholder='Name' />
+  <input type="text" value={name} onChange={(e)=>setname(e.target.value)}  className='text-white w-full bg-[#26292E] rounded-lg py-2 pl-3' style={{ fontSize: '12px' }} placeholder='Name' />
   <p className='text-[9px] text-white'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
 </div>
 
@@ -413,7 +523,7 @@ function Assistants() {
 <button
     type="button"
     className="mt-3 inline-flex w-full justify-center  items-center rounded-md bg-[#55E3CB] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm   sm:mt-0 sm:w-auto"
-    onClick={() => setOpen(false)}
+    onClick={handleCreate}
     ref={cancelButtonRef}
   >
     Next

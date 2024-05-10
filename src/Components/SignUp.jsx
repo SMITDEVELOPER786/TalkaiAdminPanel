@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { Toaster,toast } from 'sonner';
 import { useDispatch } from 'react-redux';
-import { register_user_post_async } from '../Store/Service/AuthService';
+import { register_user_post_async, verify_otp_post_async } from '../Store/Service/AuthService';
 import { Dialog, Transition } from '@headlessui/react'
 import OtpInput from 'react-otp-input';
 
@@ -13,6 +13,11 @@ function SignUp() {
 
   let [isOpen, setIsOpen] = useState(false)
 
+
+    const [userOtp,setUserOtp] = useState()
+
+
+ 
   function closeModal() {
     setIsOpen(false)
   }
@@ -78,6 +83,8 @@ const [otp, setOtp] = useState('');
       .then(res => {
         // toast.success(res.error.message)
 
+        setUserOtp(res.payload.data.otp)
+ 
         if(res?.payload?.message){
           
           toast.success(res.payload.message)
@@ -85,7 +92,7 @@ const [otp, setOtp] = useState('');
             openModal()
             // nav("/login")
 
-          }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+          }, 2000);  
             
         
         }else{
@@ -114,14 +121,65 @@ const [otp, setOtp] = useState('');
   };
 
 
-const handleVerifyOtp = ()=>{
+const handleVerifyOtp = async ()=>{
+ 
 
-console.log(otp)
 
-nav("/login")
+if(otp === userOtp){
+  
+ 
 
+    const post_data ={
+     otp
+    }
+
+
+    await  dispatch(verify_otp_post_async(post_data))
+    .then(res => {
+
+          if(res?.payload?.message){
+            toast.success(res.payload.message)
 
 closeModal()
+
+
+            setTimeout(() => {
+               nav("/login")
+  
+            }, 2000);  
+
+          }else{
+            toast.warning(res.error.message)
+
+          }
+
+  
+    
+
+ 
+    })
+    .catch(e => {
+    console.log(e);
+  
+    });
+    
+    
+    
+
+
+
+  }
+
+else{
+  toast.warning("invalid otp")
+
+}
+
+
+
+// nav("/login")
+
+
 
 
 
@@ -239,6 +297,12 @@ closeModal()
           </div>
         </div>
       </section>
+
+
+
+
+
+
 
 
 

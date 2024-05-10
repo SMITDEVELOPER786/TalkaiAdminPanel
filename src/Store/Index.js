@@ -6,11 +6,12 @@ import { type_constants } from "./Constant";
 
 import userAuthSlice from "./Slice/AuthSlice"
 
+import userPhoneSlice from "./Slice/PhoneSlice"
 
 
 const reducers = combineReducers({
   auth: userAuthSlice,
-
+phone:userPhoneSlice
 
 });
 

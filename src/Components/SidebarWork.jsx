@@ -33,9 +33,9 @@ const handleLogout = () =>{
 
     toast.success(res.payload.message)
 
-    setTimeout(() => {
+  
       nav("/" ,{ replace: true })
-    }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+    
   }
 
 

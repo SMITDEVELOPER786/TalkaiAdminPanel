@@ -6,6 +6,7 @@ import {
   login_user_post_async,
   logout_user_post_async,
   register_user_post_async,
+  verify_otp_post_async,
  } from "../Service/AuthService";
 
 const initialState = {
@@ -26,6 +27,15 @@ const initialState = {
   logout_error: null,
 
  
+// verify otp
+
+user_verify_otp_status:asyncStatus.IDLE,
+verify_otp_error:null,
+verify_otp_data:null
+
+
+
+
 
 };
 
@@ -58,6 +68,8 @@ const userAuthSlice = createSlice({
         state.user_register_status = asyncStatus.SUCCEEDED;
         state.register_user = payload.success;
         state.register_data = payload.data;
+        localStorage.setItem("user_Token", payload.token);
+
       }
     );
     builder.addCase(register_user_post_async.rejected, (state, actions) => {
@@ -109,7 +121,32 @@ const userAuthSlice = createSlice({
       state.logout_error = error ? error.message : "Unknown error"; // Set the logout error message
     });
 
- 
+
+
+
+  // Verify otp
+
+  builder.addCase(verify_otp_post_async.pending, (state) => {
+    state.user_verify_otp_status = asyncStatus.LOADING;
+    state.verify_otp_error = null;
+  });
+
+  builder.addCase(verify_otp_post_async.fulfilled, (state, { payload }) => {
+    state.user_verify_otp_status = asyncStatus.SUCCEEDED;
+    // state.login_user = payload;
+    state.verify_otp_data = payload.data;
+    // localStorage.setItem("user_data",JSON.stringify(payload.data));
+    // Save token to local storage
+    localStorage.setItem("user_Token", payload.token);
+  });
+
+  builder.addCase(verify_otp_post_async.rejected, (state, { error }) => {
+    state.user_verify_otp_status = asyncStatus.ERROR;
+    state.verify_otp_error = error ? error.message : "Unknown error";
+    state.verify_otp_data = null;
+    // state.login_user = false;
+  });
+
 
  
 
