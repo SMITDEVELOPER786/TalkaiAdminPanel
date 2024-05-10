@@ -59,6 +59,7 @@ const post_data={
     "temperature": 1,
     "functions": [
       {
+        // "name": name,
         "name": "functionName",
         "async": true,
         "description": "functionDescription",
@@ -91,7 +92,8 @@ const post_data={
   "numWordsToInterruptAssistant": 2,
   "maxDurationSeconds": 1800,
   "backgroundSound": "office",
-  "name": "modelName",
+  "name": name,
+  // "name": "modelName",
   "forwardingPhoneNumbers": [{"number": "+923173186615", "sipUri": "sipUri", "message": "message"}],
   "firstMessage": "firstMessage",
   "voicemailDetectionEnabled": true,

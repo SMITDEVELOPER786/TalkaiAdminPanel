@@ -8,7 +8,7 @@ export const api = axios.create({
   baseURL1,
   headers: {
     "Content-Type": "application/json",
-    Authorization: "Bearer 84cbbc41-1033-4a6f-bc19-8da0ddc3cb44",
+    Authorization: "Bearer da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2",
   },
 });
 
@@ -20,7 +20,7 @@ export const apiHandle = axios.create({
 });
 
 export const apiHandle1 = axios.create({
-  baseURL1,
+  baseURL: baseURL1,
   headers: {
     "Content-Type": "application/json",
   },
@@ -39,11 +39,12 @@ apiHandle.interceptors.request.use(async (req) => {
 });
 
 apiHandle1.interceptors.request.use(async (req) => {
-  const auth_token = (await localStorage.getItem("user_Token")) || "";
+  const auth_token = "da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2"
 
-  console.log(auth_token);
+
+    console.log(auth_token);
   if (auth_token) {
-    req.headers.Authorization = `Bearer ${`84cbbc41-1033-4a6f-bc19-8da0ddc3cb44`}`;
+    req.headers.Authorization = `Bearer ${auth_token}`;
   }
 
   return req;
