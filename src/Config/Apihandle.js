@@ -5,7 +5,7 @@ const baseURL = "https://talkai-backend-847736e7f421.herokuapp.com/api";
 const baseURL1 = "https://api.vapi.ai";
 
 export const api = axios.create({
-  baseURL1,
+  baseURL: baseURL1,
   headers: {
     "Content-Type": "application/json",
     Authorization: "Bearer da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2",
@@ -39,10 +39,9 @@ apiHandle.interceptors.request.use(async (req) => {
 });
 
 apiHandle1.interceptors.request.use(async (req) => {
-  const auth_token = "da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2"
+  const auth_token = (await localStorage.getItem("user_Token")) || "";
 
-
-    console.log(auth_token);
+  console.log(auth_token);
   if (auth_token) {
     req.headers.Authorization = `Bearer ${auth_token}`;
   }
