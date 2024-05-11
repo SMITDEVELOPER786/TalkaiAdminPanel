@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useRef } from "react";
 import hero from "../assets/3d44514d9165df96c04149072765a6e6.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import event from "../assets/event.png"
@@ -36,7 +36,7 @@ function HeroSection() {
   const buttonConfig = {
     position: "bottom-right", // "bottom" | "top" | "left" | "right" | "top-right" | "top-left" | "bottom-left" | "bottom-right"
     offset: "40px", // decide how far the button should be from the edge
-    width: "50px", // min-width of the button
+    width: "30px", // min-width of the button
     height: "50px", // height of the button
     idle: { // button state when the call is not active.
       color: `rgb(93, 254, 202)`,
@@ -67,8 +67,12 @@ function HeroSection() {
 
 
   }
+  const [showBtn, setshowBtn] = useState(false)
+  const customButtonRef = useRef(null);
 
-
+  const handleCustomButtonClick = () => {
+    // Do something when custom button is clicked
+  };
 
   return (
     <>
@@ -84,8 +88,7 @@ function HeroSection() {
               growth, customer satisfaction, and enhanced business success.
             </p>
 
-            <VapiChatWidget assistant={assistant} apiKey={apiKey} buttonConfig={buttonConfig} />
-    
+
 
             <div className="p-5 flex flex-col md:justify-start md:items-start  justify-center items-center">
               <div className="flex items-center gap-2 sm:flex-row flex-col">
@@ -94,8 +97,20 @@ function HeroSection() {
                   <Button2 />
                 </button>
 
+                <div style={{ border: "1px solid red" }}>
 
-                <button onClick={openModal} className={`${click == false ? "hidden" : "block"}`}>
+                  {showBtn && <div>
+                  
+                    <VapiChatWidget
+                      assistant={assistant}
+                      apiKey={apiKey}
+                      buttonConfig={buttonConfig}
+                      customButton={customButtonRef.current}
+                    />
+                  </div> 
+                  }
+                </div>
+                <button onClick={() => setshowBtn(!showBtn)} className={`${click == false ? "hidden" : "block"}`}>
                   <Button />
                 </button>
                 {/* </Link> */}
