@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Toaster, toast } from 'sonner'
 import { useDispatch } from 'react-redux';
 import { login_user_post_async } from '../Store/Service/AuthService';
@@ -11,9 +11,9 @@ import { login_user_post_async } from '../Store/Service/AuthService';
 
 function Login() {
 
-const nav = useNavigate()
+  const nav = useNavigate()
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -38,63 +38,63 @@ const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if either email or password is blank
     if (!formData.email && !formData.password) {
       toast.error('Please enter both email and password.');
-    
-    }else if(!formData.email){
+
+    } else if (!formData.email) {
       toast.error('Please enter email .');
 
     }
-    else if(!formData.password){
+    else if (!formData.password) {
       toast.error('Please enter Password.');
 
-    }else if(formData.email && formData.password) {
+    } else if (formData.email && formData.password) {
 
       const post_data = {
-        email:formData.email,
-        password:formData.password
+        email: formData.email,
+        password: formData.password
       }
 
       console.log(post_data)
 
       await dispatch(login_user_post_async(post_data))
-      .then((res)=>{
-        // toast.success(res.error.message)
- 
-            if(res?.payload?.message){
-          
-          toast.success(res.payload.message)
-          setTimeout(() => {
-            nav("/home/assistants")
+        .then((res) => {
+          // toast.success(res.error.message)
+          console.log(res)
+          if (res?.payload?.message) {
+            localStorage.setItem("user", JSON.stringify(res.payload))
+            toast.success(res.payload.message)
+            setTimeout(() => {
+              nav("/home/assistants")
 
-          }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
-            
-        
-        }else{
-          toast.warning(res.error.message)
-        }
-      
+            }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
 
+
+          } else {
+            toast.warning(res.error.message)
+          }
 
 
 
 
 
-      })
-      .catch(e => {
-      
-        console.log(e,"....");
-      });
 
-      
-  
-    
-  }
-  
+
+        })
+        .catch(e => {
+
+          console.log(e, "....");
+        });
+
+
+
+
+    }
+
   };
-  
+
   return (
     <div className='bg-main py-20 relative'>
       <Toaster position='top-right' />
