@@ -114,6 +114,7 @@ function Assistants() {
       .then((res) => {
         console.log(res);
         setOpen(false)
+        // getAssistants();
       })
       .catch(e => {
         console.log(e);
@@ -123,30 +124,32 @@ function Assistants() {
 
 
   // get assistant
-  const [assistant, setAssistant] = useState([])
-  useEffect(() => {
+  const [assistant, setAssistant] = useState([]);
+
+  const getAssistants = async () => {
     dispatch(getAssistant()).then((res) => {
       console.log(res.payload);
       const data = res?.payload.filter((assist) => assist.userId === user._id);
       console.log(data);
       setAssistant(data)
     })
+  }
+  useEffect(() => {
+    getAssistants()
+  }, [open])
+  // const options = {
+  //   method: 'GET',
+  //   headers: { Authorization: 'Bearer da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2' }
+  // };
 
-
-    // const options = {
-    //   method: 'GET',
-    //   headers: { Authorization: 'Bearer da0a9e6e-c9a9-45ba-a82b-64e016f9e2f2' }
-    // };
-
-    // fetch('https://api.vapi.ai/assistant', options)
-    //   .then(response => response.json())
-    //   .then(response => {
-    //     console.log(response);
-    //     const filterAss = response.filter((asst) => asst.id === user._id)
-    //     setAssistant(filterAss)
-    //   })
-    //   .catch(err => console.error(err));
-  }, [])
+  // fetch('https://api.vapi.ai/assistant', options)
+  //   .then(response => response.json())
+  //   .then(response => {
+  //     console.log(response);
+  //     const filterAss = response.filter((asst) => asst.id === user._id)
+  //     setAssistant(filterAss)
+  //   })
+  //   .catch(err => console.error(err));
 
 
 
@@ -484,6 +487,7 @@ function Assistants() {
                                 type="button"
                                 className="mt-3 inline-flex w-full justify-center  items-center rounded-md bg-[#55E3CB] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm   sm:mt-0 sm:w-auto"
                                 onClick={() => settab(true)}
+                                disabled={name == ""&& true}
                                 ref={cancelButtonRef}
                               >
                                 Next

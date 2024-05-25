@@ -73,7 +73,6 @@ export const getAssistant = createAsyncThunk(type_constants.GET_ASSISTANT, async
 
     return res_data;
 
-
   } catch (error) {
     console.log(error);
     if (error?.response?.data) {

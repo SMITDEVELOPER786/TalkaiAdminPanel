@@ -2,8 +2,9 @@ import axios from "axios";
 
 const baseURL = "https://talkai-backend-847736e7f421.herokuapp.com/api";
 
+// const baseURL1 = "https://talkai-backend-847736e7f421.herokuapp.com/api";
 const baseURL1 = "http://localhost:5000/api/";
-// const baseURL1 = "https://api.vapi.ai";
+// const baseURL1 = "https://api.vapi.ai"; 
 
 export const api = axios.create({
   baseURL: baseURL1,
