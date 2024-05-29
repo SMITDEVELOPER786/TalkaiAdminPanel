@@ -135,14 +135,22 @@ function Footer() {
               </h2>
               <nav class="list-none mb-10 space-y-4">
                 <li>
-                  <a class="text-[#FFFFFF] text-sm hover:text-[#55E3CB] duration-300 cursor-pointer">
+
+<Link to="/privacy&policy">
+<a class="text-[#FFFFFF] text-sm hover:text-[#55E3CB] duration-300 cursor-pointer">
                     Privacy Policy
                   </a>
+</Link>
+
+
+
                 </li>
                 <li>
-                  <a class="text-[#FFFFFF] text-sm hover:text-[#55E3CB] duration-300 cursor-pointer">
+                <Link to="/terms&conditions">
+<span class="text-[#FFFFFF] text-sm hover:text-[#55E3CB] duration-300 cursor-pointer">
                     Terms & Conditions
-                  </a>
+                  </span>
+</Link>
                 </li>
                 <li>
                   <a class="text-[#FFFFFF] text-sm hover:text-[#55E3CB] duration-300 cursor-pointer">

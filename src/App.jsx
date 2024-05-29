@@ -12,6 +12,8 @@ import HeroSection2 from "./Components/HeroSection2";
 import JustTalk from "./Components/JustTalk";
 import SignUp from "./Components/SignUp";
 import SignUp2 from "./Components/Signup2";
+import TermCon from "./Components/TermCon";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
 
 function App() {
   const location = useLocation();
@@ -38,6 +40,8 @@ function App() {
 
         <Route path="/faq" element={<Faq />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/terms&conditions" element={<TermCon/>} />
+        <Route path="/privacy&policy" element={<PrivacyPolicy/>} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/pricingplan" element={<PricingPlans />} />

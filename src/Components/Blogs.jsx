@@ -1,5 +1,8 @@
 import React from "react";
-import card from "../assets/PchkJS.png"
+import img1 from "../assets/talkai1.gif"
+import img2 from "../assets/callatt1.gif"
+import img3 from "../assets/3333.gif"
+
 function Blogs() {
   return (
     <>
@@ -18,7 +21,7 @@ function Blogs() {
      
      
         <div class="max-w-xs rounded overflow-hidden shadow-lg">
-  <img class="w-full" src={card} alt="Sunset in the mountains"/>
+  <img class="w-full" src={img1} alt="Sunset in the mountains"/>
   <div class="px-6 py-4">
     <div class="font-bold text-[#FE7E29] text-xl mb-2 text-center">Revolutionizing Order 
 Processing: The AI 
@@ -37,7 +40,7 @@ Receptionist Solution</div>
 
 
 <div class="max-w-xs rounded overflow-hidden shadow-lg">
-  <img class="w-full" src={card} alt="Sunset in the mountains"/>
+  <img class="w-full" src={img2} alt="Sunset in the mountains"/>
   <div class="px-6 py-4">
     <div class="font-bold text-[#FE7E29] text-xl mb-2 text-center">Revolutionizing Order 
 Processing: The AI 
@@ -51,7 +54,7 @@ Receptionist Solution</div>
   </div>
 </div>
 <div class="max-w-xs rounded overflow-hidden shadow-lg">
-  <img class="w-full" src={card} alt="Sunset in the mountains"/>
+  <img class="w-full" src={img3} alt="Sunset in the mountains"/>
   <div class="px-6 py-4">
     <div class="font-bold text-[#FE7E29] text-xl mb-2 text-center">Revolutionizing Order 
 Processing: The AI 
