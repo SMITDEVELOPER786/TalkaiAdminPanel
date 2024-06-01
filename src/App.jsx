@@ -14,6 +14,7 @@ import SignUp from "./Components/SignUp";
 import SignUp2 from "./Components/Signup2";
 import TermCon from "./Components/TermCon";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
+import BlogDetails from "./Components/BlogDetails";
 
 function App() {
   const location = useLocation();
@@ -25,14 +26,15 @@ function App() {
   return (
     <div className="">
       {location.pathname != "/home/assistants" &&
-      location.pathname != "/home/phone" &&
-      location.pathname != "/home/call" &&
-      location.pathname != "/home/sms" &&
-      location.pathname != "/home/voice" &&
-      location.pathname != "/home/billing" &&
-      location.pathname != "/home/account" &&
-      location.pathname != "/home/resources" &&
-      location.pathname != "/home/help" ? (
+        location.pathname != "/home/phone" &&
+        location.pathname != "/home/call" &&
+        location.pathname != "/home/sms" &&
+        location.pathname != "/home/voice" &&
+        location.pathname != "/home/billing" &&
+        location.pathname != "/home/account" &&
+        location.pathname != "/home/resources" &&
+        location.pathname != "/blogdetails/:id" &&
+        location.pathname != "/home/help" ? (
         <Navbar />
       ) : null}
       <Routes>
@@ -40,28 +42,29 @@ function App() {
 
         <Route path="/faq" element={<Faq />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/terms&conditions" element={<TermCon/>} />
-        <Route path="/privacy&policy" element={<PrivacyPolicy/>} />
+        <Route path="/terms&conditions" element={<TermCon />} />
+        <Route path="/privacy&policy" element={<PrivacyPolicy />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/pricingplan" element={<PricingPlans />} />
-        <Route path="/herosection2" element={<HeroSection2/>} />
-        <Route path="/justtalk" element={<JustTalk/>} />
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path="/signupp" element={<SignUp2/>} />
+        <Route path="/herosection2" element={<HeroSection2 />} />
+        <Route path="/justtalk" element={<JustTalk />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signupp" element={<SignUp2 />} />
+        <Route path="/blogdetails/:id" element={<BlogDetails />} />
 
         <Route path="/home/*" element={<Home />} />
       </Routes>
 
       {location.pathname != "/home/assistants" &&
-      location.pathname != "/home/phone" &&
-      location.pathname != "/home/call" &&
-      location.pathname != "/home/sms" &&
-      location.pathname != "/home/voice" &&
-      location.pathname != "/home/billing" &&
-      location.pathname != "/home/account" &&
-      location.pathname != "/home/resources" &&
-      location.pathname != "/home/help" ? (
+        location.pathname != "/home/phone" &&
+        location.pathname != "/home/call" &&
+        location.pathname != "/home/sms" &&
+        location.pathname != "/home/voice" &&
+        location.pathname != "/home/billing" &&
+        location.pathname != "/home/account" &&
+        location.pathname != "/home/resources" &&
+        location.pathname != "/home/help" ? (
         <Footer />
       ) : null}
     </div>

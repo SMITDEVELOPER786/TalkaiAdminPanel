@@ -29,13 +29,13 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
 
-   
+
 
   }, []);
 
 
 
-  
+
   useOutsideClick(menuRef, () => {
     setIsMenuOpen(false);
   });
@@ -60,9 +60,9 @@ function Navbar() {
     exited: { opacity: 0, transform: "translateY(-20px)" },
   };
   return (
-    <div style={{zIndex:999}} className={`navbar z-50 fixed w-full ${scrolling ? 'navbar-scroll-bg' : ''}`}>
+    <div style={{ zIndex: 999, top: 0 }} className={`navbar z-50 fixed w-full ${scrolling ? 'navbar-scroll-bg' : ''}`}>
       <div className="flex my-5 p-2 sm:mx-14 mx-7 items-center justify-between rounded-3xl shadow-xl bg-main">
-       <Link to={"/"}> <img src={logo} className="w-36" alt="logo image" /></Link>
+        <Link to={"/"}> <img src={logo} className="w-36" alt="logo image" /></Link>
 
         <nav>
           <ul className="md:flex cursor-pointer  text-sm hidden text-white gap-3  text-[16px] items-center">
@@ -71,11 +71,11 @@ function Navbar() {
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/pricingplan"}>PRICING</Link></li>
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/faq"}>FAQs</Link></li>
             <li className="hover:text-[#55E3CB] duration-200 "><Link to={"/login"}>LOGIN</Link></li>
-           <Link to='/signup'>
-           <li className="text-black-500 font-bold bg-[#55E3CB] hover:bg-white duration-200 rounded-full px-5 py-2">
-              SIGN UP FOR FREE
-            </li>
-           </Link>
+            <Link to='/signup'>
+              <li className="text-black-500 font-bold bg-[#55E3CB] hover:bg-white duration-200 rounded-full px-5 py-2">
+                SIGN UP FOR FREE
+              </li>
+            </Link>
           </ul>
         </nav>
 
