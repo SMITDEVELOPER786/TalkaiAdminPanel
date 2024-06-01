@@ -30,7 +30,7 @@ function Footer() {
                   <h1 className="text-sm font-bold leading-3">
                     Office Phone Number
                   </h1>
-                  <h1 className="text-sm">1-240-399-6306</h1>
+                  <h1 className="text-sm">1 (833) 570 0997</h1>
                 </div>
               </div>
               <div className="flex sm:justify-start justify-center  items-center gap-2">
