@@ -31,7 +31,7 @@ function Blogs() {
   const naivgate = useNavigate()
   return (
     <>
-      <div className="  bg-white py-10" style={{ border: "1px solid red" }}>
+      <div className="  bg-white py-10" style={{ }}>
         <div className=" flex flex-col  justify-center items-center">
           <h1 className="text-center  pt-10 font-bold text-base md:text-2xl ">
             LATEST BLOGS AND NEWS

@@ -3,8 +3,12 @@ import React, { useEffect } from 'react'
 import img1 from "../assets/talkai1.gif"
 import img2 from "../assets/callatt1.gif"
 import img3 from "../assets/3333.gif"
-import { useParams } from 'react-router-dom'
+import blogbgImg from "../assets/1000_F_347061146_GnxehyjBHXWfhoLsI95PYY3ewV0dtWqz.jpg"
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { GoChevronRight, GoChevronLeft } from "react-icons/go";
+import "./BlogDetails.css"
+
 
 function BlogDetails() {
     const blogs = [
@@ -28,7 +32,7 @@ function BlogDetails() {
         },
 
     ]
-    const { id } = useParams();
+    let { id } = useParams();
     const [Blog, setBlog] = useState([])
     useEffect(() => {
         console.log(id)
@@ -61,15 +65,17 @@ function BlogDetails() {
     };
 
 
+    const navigate = useNavigate()
+
     return (
         <>
-            <div className='my-52'>
+            <div className='py-52' style={{ backgroundColor: "white" }}>
                 <div className='flex justify-evenly'>
                     <div style={{ width: "60%" }}>
                         <div >
-                            <img src={Blog[0]?.blogImg} alt="" style={{ height: "100vh" }} />
+                            <img src={Blog[0]?.blogImg} alt="" style={{ height: "" }} />
                         </div>
-                        <div >
+                        <div className='my-5' >
                             <h1 style={{ fontSize: "35px", fontWeight: "bold" }}>{Blog[0]?.title}</h1>
                             <span style={{ color: "gray", fontSize: "12px" }}>Business-January 28, 2024</span>
                         </div>
@@ -112,9 +118,53 @@ function BlogDetails() {
                             </div>
                             <div className='my-3'>
                                 <p>
-                                    Transform your order management system with the power of AI. Explore how an AI Receptionist can elevate your business operations by visiting <a href=""> our website.                                </a>
+                                    Transform your order management system with the power of AI. Explore how an AI Receptionist can elevate your business operations by visiting <a href="" style={{ color: "#4A45D2" }}> our website.                                </a>
                                 </p>
                             </div>
+
+                            <div className=' my-5 items-center cursor-pointer flex' style={{ width: "100%", justifyContent: "space-between", borderTop: "1px solid #B7B7EC", borderBottom: "1px solid #B7B7EC", }}>
+                                {blogs.length == id ?
+                                    <div className='flex p-2 items-center ' style={{ color: "#3D5EEA", }} onClick={() => navigate(`/blogdetails/${--id}`)}>
+                                        <span className='mr-2'>
+                                            <GoChevronLeft />
+                                        </span>
+                                        <span>
+                                            Previous Post
+                                        </span>
+                                    </div>
+                                    :
+                                    id == 1 ?
+                                        <div className='flex p-2 items-center ' style={{ color: "#3D5EEA" }} onClick={() => navigate(`/blogdetails/${++id}`)}>
+                                            <span>
+                                                Next Post
+                                            </span>
+                                            <span>
+                                                <GoChevronRight />
+                                            </span>
+                                        </div>
+                                        :
+                                        <>
+                                            <div className='flex p-2 items-center ' style={{ color: "#3D5EEA", }} onClick={() => navigate(`/blogdetails/${--id}`)}>
+                                                <span className='mr-2'>
+                                                    <GoChevronLeft />
+                                                </span>
+                                                <span>
+                                                    Previous Post
+                                                </span>
+                                            </div>
+                                            <div className='flex p-2 items-center ' style={{ color: "#3D5EEA", }} onClick={() => navigate(`/blogdetails/${++id}`)}>
+                                                <span>
+                                                    Next Post
+                                                </span>
+                                                <span>
+                                                    <GoChevronRight />
+                                                </span>
+                                            </div>
+                                        </>
+                                }
+                            </div>
+
+
                             <div>
                                 <form onSubmit={handleSubmit}>
                                     <h2 style={{ color: "black", fontWeight: "bold" }}>Leave a Reply</h2>
@@ -198,20 +248,47 @@ function BlogDetails() {
                             </h2>
 
                         </div>
-                        <div>
-                            <h2 style={{ fontWeight: "bold", fontSize: "30px", marginTop: "10px" }}>Services</h2>
+                        <div className='mt-12'>
+                            <h2 style={{ fontWeight: "bold", fontSize: "30px", marginTop: "10px", }}>Services</h2>
                             <ul style={{ color: "gray" }}>
-                                <li className='my-4'>  Call Route Planning with TalkAi 247</li>
-                                <li className='my-4'>Texts & Appointments with TalkAi247</li>
-                                <li className='my-4'>AI  for Customer Orders: Bussiness Efficiency</li>
-                                <li className='my-4'>Consulting with TalkAi247</li>
-                                <li className='my-4'>Effortless Refund & Complaint Resolution</li>
+                                <li className='my-4' style={{ borderBottom: "1px solid #E8E8E8" }} >  Call Route Planning with TalkAi 247</li>
+                                <li className='my-4' style={{ borderBottom: "1px solid #E8E8E8" }} >Texts & Appointments with TalkAi247</li>
+                                <li className='my-4' style={{ borderBottom: "1px solid #E8E8E8" }} >AI  for Customer Orders: Bussiness Efficiency</li>
+                                <li className='my-4' style={{ borderBottom: "1px solid #E8E8E8" }} >Consulting with TalkAi247</li>
+                                <li className='my-4' style={{ borderBottom: "1px solid #E8E8E8" }} >Effortless Refund & Complaint Resolution</li>
                             </ul>
-                            {/* <h2 style={{ fontWeight: "bold", fontSize: "30px", color: "#7A7A7A" }}>
-                                Talkai247: Elevating Business Communication with Premier AI Receptionist 
-                            </h2> */}
-
                         </div>
+                        <div>
+                            <h2 className='mt-12' style={{ fontWeight: "bold", fontSize: "25px" }}>Most Recent Posts</h2>
+                            {blogs.map((blog) => (<div className='flex my-5'>
+                                <div style={{ width: "40%" }}>
+                                    <img src={blog.blogImg} alt="" />
+                                </div>
+                                <div className="ml-8">
+                                    <h2>{blog.title}</h2>
+                                </div>
+                            </div>))}
+                        </div>
+                        <div class="image-container">
+                            <img src="https://talkai247.online/wp-content/uploads/2024/01/Post-3.jpg" alt="Your Image Description" />
+                            <div class="overlay-text"><h2 style={{ fontSize: "25px" }}>
+                                Talk 247</h2>
+                                <p style={{ fontSize: "15px", color: "gray" }}>Transform your Company's Communication with The experts of Talkai247</p>
+                                <button type="submit" style={{
+                                    // width: "15%",
+                                    margin:"10px 0",
+                                    padding: "8px 15px",
+                                    backgroundColor: "#007BFF",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    color: "white",
+                                    fontSize: "16px",
+                                    cursor: "pointer"
+                                }} >Download Info</button>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div >
 
