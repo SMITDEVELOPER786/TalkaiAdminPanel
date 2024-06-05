@@ -8,7 +8,8 @@ import Plus from "../../assets/Plus.png"
 import 'react-tabs/style/react-tabs.css';
 import "../../App.css"
 import { useDispatch } from 'react-redux';
-import { create_assistant, getAssistant } from '../../Store/Service/PhoneService';
+import { create_assistant, deleteAssistant, getAssistant } from '../../Store/Service/PhoneService';
+import { Toaster, toast } from 'sonner';
 function Assistants() {
   const [open, setOpen] = useState(false)
 
@@ -104,7 +105,7 @@ function Assistants() {
       "metadata": {},
       "serverUrl": "https://example.com",
       "serverUrlSecret": "serverUrlSecret",
-      "userId": user._id
+      // "userId": user._id
     }
 
 
@@ -128,10 +129,11 @@ function Assistants() {
 
   const getAssistants = async () => {
     dispatch(getAssistant()).then((res) => {
+      console.log(res);
       console.log(res.payload);
-      const data = res?.payload.filter((assist) => assist.userId === user._id);
-      console.log(data);
-      setAssistant(data)
+      setAssistant(res.payload)
+      // const data = res?.payload.filter((assist) => assist.userId === user._id);
+      // console.log(data);
     })
   }
   useEffect(() => {
@@ -151,12 +153,26 @@ function Assistants() {
   //   })
   //   .catch(err => console.error(err));
 
+  const delAssistant = (assistId) => {
+    dispatch(deleteAssistant(assistId)).then((res) => {
+      console.log(res)
+      if(res.error)
+        toast.error("Assistant ID is required ")
+      else
+      toast.success(res.payload)
+      getAssistants()
+    })
+    // .catch(e => {
+    //   console.log(e.error.message);
+    //   
+    // });
+  }
 
 
 
   return (
     <div className=''>
-
+  <Toaster position='top-right' />
 
       <header className='flex justify-between items-center px-4 my-4'>
         <div className='leading-5 text-start'>
@@ -176,7 +192,7 @@ function Assistants() {
       <div className=" mx-auto w-[98%] bg-[#171717] h-0.5 "></div>
 
       <div className='flex lg:flex-row flex-col px-5 gap-2 mt-1   '>
-        <div className='w-full lg:w-[20%] border border-gray-500 rounded-md   '>
+        <div className='w-full lg:w-[20%] border border-gray-500 rounded-md  overflow-scroll ' style={{ overflow: "scroll", height: "100vh" }}>
 
           {assistant.length > 0 && assistant?.map((assist) => (
             console.log(assist.orgId),
@@ -193,7 +209,7 @@ function Assistants() {
                 {/* Mic and Bin icons on the right side of the input field */}
                 <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex gap-1 text-gray-500">
                   <Icon icon="ic:baseline-mic" width="20" color='#717884' /> {/* Mic icon */}
-                  <Icon icon="ic:baseline-delete" width="20" color='#FE7E29' /> {/* Bin icon */}
+                  <Icon icon="ic:baseline-delete" width="20" color='#FE7E29' onClick={()=>delAssistant(assist.id)} /> {/* Bin icon */}
                 </div>
               </div>
             </div>
@@ -487,7 +503,7 @@ function Assistants() {
                                 type="button"
                                 className="mt-3 inline-flex w-full justify-center  items-center rounded-md bg-[#55E3CB] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm   sm:mt-0 sm:w-auto"
                                 onClick={() => settab(true)}
-                                disabled={name == ""&& true}
+                                disabled={name == "" && true}
                                 ref={cancelButtonRef}
                               >
                                 Next

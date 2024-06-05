@@ -48,7 +48,7 @@ export const user_buy_phone_post_async = createAsyncThunk(type_constants.BUY_PHO
 
 export const create_assistant = createAsyncThunk(type_constants.CREATE_ASSISTANT, async (post_data) => {
   try {
-    const response = await api.post('/assistant/create', post_data);
+    const response = await api.post('/assistant/', post_data);
 
     const res_data = await response.data;
     return res_data;
@@ -67,12 +67,27 @@ export const create_assistant = createAsyncThunk(type_constants.CREATE_ASSISTANT
 
 export const getAssistant = createAsyncThunk(type_constants.GET_ASSISTANT, async () => {
   try {
-    const response = await api.get("/assistant/get")
-    const res_data = await response.data.data;
-    console.log(res_data)
+    const response = await api.get("/assistant")
+    const res_data = await response.data;
+    // console.log(response.data)
 
     return res_data;
 
+  } catch (error) {
+    console.log(error);
+    if (error?.response?.data) {
+      throw Error(error.response.data.message);
+    } else {
+      throw Error(error.message);
+    }
+  }
+})
+
+export const deleteAssistant = createAsyncThunk(type_constants.DeleteAssistant, async (assistId) => {
+  try {
+    const data = await api.delete(`/assistant/${assistId}`)
+    console.log(data)
+    return "Assistant deleted successfully"
   } catch (error) {
     console.log(error);
     if (error?.response?.data) {
