@@ -31,7 +31,7 @@ function HeroSection() {
 
   // initialzation for VAPI
   var vapiInstance = null;
-  const assistant = "02d62251-97d4-430d-8ac2-765c117c330f"; // Substitute with your assistant ID
+  const assistant = "f95ca18e-d7b1-4d65-8d52-da53911e8cbe"; // Substitute with your assistant ID
   const apiKey = "ae1becae-0dd1-4a3b-ada7-e06d916cabcd"; // Substitute with your Public key from Vapi Dashboard.
   const buttonConfig = {
     position: "bottom-right", // "bottom" | "top" | "left" | "right" | "top-right" | "top-left" | "bottom-left" | "bottom-right"
