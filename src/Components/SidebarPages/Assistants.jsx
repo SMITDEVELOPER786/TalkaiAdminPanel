@@ -105,7 +105,7 @@ function Assistants() {
       "metadata": {},
       "serverUrl": "https://example.com",
       "serverUrlSecret": "serverUrlSecret",
-      // "userId": user._id
+      "userId": user._id
     }
 
 
@@ -114,8 +114,10 @@ function Assistants() {
     await dispatch(create_assistant(post_data))
       .then((res) => {
         console.log(res);
+        if (res.error)
+          toast.error(res?.error?.message)
         setOpen(false)
-        // getAssistants();
+        getAssistants();
       })
       .catch(e => {
         console.log(e);
@@ -130,8 +132,10 @@ function Assistants() {
   const getAssistants = async () => {
     dispatch(getAssistant()).then((res) => {
       console.log(res);
-      console.log(res.payload);
-      setAssistant(res.payload)
+      console.log(res.payload.data);
+      const filterAssistant = res.payload.data.filter((assist) => assist.userId === user._id);
+      console.log(filterAssistant)
+      setAssistant(filterAssistant)
       // const data = res?.payload.filter((assist) => assist.userId === user._id);
       // console.log(data);
     })
@@ -154,12 +158,13 @@ function Assistants() {
   //   .catch(err => console.error(err));
 
   const delAssistant = (assistId) => {
+    console.log(assistId)
     dispatch(deleteAssistant(assistId)).then((res) => {
       console.log(res)
-      if(res.error)
+      if (res.error)
         toast.error("Assistant ID is required ")
       else
-      toast.success(res.payload)
+        toast.success(res.payload)
       getAssistants()
     })
     // .catch(e => {
@@ -172,7 +177,7 @@ function Assistants() {
 
   return (
     <div className=''>
-  <Toaster position='top-right' />
+      <Toaster position='top-right' />
 
       <header className='flex justify-between items-center px-4 my-4'>
         <div className='leading-5 text-start'>
@@ -194,26 +199,38 @@ function Assistants() {
       <div className='flex lg:flex-row flex-col px-5 gap-2 mt-1   '>
         <div className='w-full lg:w-[20%] border border-gray-500 rounded-md  overflow-scroll ' style={{ overflow: "scroll", height: "100vh" }}>
 
-          {assistant.length > 0 && assistant?.map((assist) => (
-            console.log(assist.orgId),
-            <div className="flex items-center bg-[#171717] px-2 mx-2 my-2 rounded ">
-              <span className="mr-4 text-white">{assist.name}</span> {/* "Ava" on the left side */}
+          {
+            assistant.length > 0 ? assistant?.map((assist) => (
+              console.log(assist.id),
+              <div className="flex items-center bg-[#171717] px-2 mx-2 my-2 rounded ">
+                <span className="mr-4 text-white">{assist.name}</span> {/* "Ava" on the left side */}
 
-              <div className="relative flex-1"> {/* Input field with relative positioning for icons */}
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="w-full pl-4 pr-14 py-2 rounded bg-[#171717] text-gray-700  outline-none  "
-                />
+                <div className="relative flex-1"> {/* Input field with relative positioning for icons */}
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="w-full pl-4 pr-14 py-2 rounded bg-[#171717] text-gray-700  outline-none  "
+                  />
 
-                {/* Mic and Bin icons on the right side of the input field */}
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex gap-1 text-gray-500">
-                  <Icon icon="ic:baseline-mic" width="20" color='#717884' /> {/* Mic icon */}
-                  <Icon icon="ic:baseline-delete" width="20" color='#FE7E29' onClick={()=>delAssistant(assist.id)} /> {/* Bin icon */}
+                  {/* Mic and Bin icons on the right side of the input field */}
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex gap-1 text-gray-500">
+                    <Icon icon="ic:baseline-mic" width="20" color='#717884' /> {/* Mic icon */}
+                    <Icon icon="ic:baseline-delete" width="20" color='#FE7E29' onClick={() => delAssistant(assist.id)} /> {/* Bin icon */}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )) : (
+              <>
+                <div>
+                  <h2 className='text-center text-white my-4'>
+                    Assistant not found...!
+                  </h2>
+                </div>
+              </>
+            )
+
+
+          }
 
 
 
@@ -448,7 +465,7 @@ function Assistants() {
 
                               <div className="mt-3 text-center  sm:text-left">
                                 <Dialog.Title as="h3" className="sm:text-xl text-base font-semibold leading-6 text-[#55E3CB]">
-                                  <h1>                      Create your new Assistants
+                                  <h1>Create your new Assistants
                                   </h1>
                                   <p className='text-[#FFFFFF] text-[10px] leading-3'>Please select a template or utilize a blank template to create your assistants.</p>
                                 </Dialog.Title>

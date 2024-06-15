@@ -1,8 +1,8 @@
-import React, { useState,Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import shadow from "../assets/shadow.png";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Link, useNavigate } from 'react-router-dom';
-import { Toaster,toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { register_user_post_async, verify_otp_post_async } from '../Store/Service/AuthService';
 import { Dialog, Transition } from '@headlessui/react'
@@ -14,10 +14,10 @@ function SignUp() {
   let [isOpen, setIsOpen] = useState(false)
 
 
-    const [userOtp,setUserOtp] = useState()
+  const [userOtp, setUserOtp] = useState()
 
 
- 
+
   function closeModal() {
     setIsOpen(false)
   }
@@ -27,11 +27,11 @@ function SignUp() {
   }
 
 
-const nav = useNavigate()
+  const nav = useNavigate()
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState('');
 
 
   const [formData, setFormData] = useState({
@@ -41,7 +41,7 @@ const [otp, setOtp] = useState('');
     password: ''
   });
 
-  const handleChange =  (e) => {
+  const handleChange = (e) => {
 
     const { name, value } = e.target;
     setFormData({
@@ -51,7 +51,7 @@ const [otp, setOtp] = useState('');
   };
 
 
- 
+
 
 
   const handleSubmit = async (e) => {
@@ -59,59 +59,59 @@ const [otp, setOtp] = useState('');
 
     if (!formData.name) {
       toast.error('Please enter your name.');
-    }else if(!formData.email){
+    } else if (!formData.email) {
       toast.error("Please enter your email")
     }
-    else if(!formData.password){
+    else if (!formData.password) {
       toast.error("Please enter your password")
     }
-    else if(!formData.contact){
+    else if (!formData.contact) {
       toast.error("Please enter your Phone Number")
     }
 
-    else if(formData.name && formData.email && formData.password && formData.contact){
+    else if (formData.name && formData.email && formData.password && formData.contact) {
 
-      const post_data ={
-        name:formData.name,
-        email:formData.email,
-        phone:formData.contact,
-        password:formData.password
+      const post_data = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.contact,
+        password: formData.password
       }
 
 
-      await  dispatch(register_user_post_async(post_data))
-      .then(res => {
-        // toast.success(res.error.message)
+      await dispatch(register_user_post_async(post_data))
+        .then(res => {
+          // toast.success(res.error.message)
 
-        setUserOtp(res.payload.data.otp)
- 
-        if(res?.payload?.message){
-          
-          toast.success(res.payload.message)
-          setTimeout(() => {
-            openModal()
-            // nav("/login")
+          setUserOtp(res.payload.data.otp)
 
-          }, 2000);  
-            
-        
-        }else{
-          toast.warning(res.error.message)
-        }
-      
+          if (res?.payload?.message) {
 
-   
-      })
-      .catch(e => {
-      console.log(e);
-    
-      });
-      
-      
-      
- 
+            toast.success(res.payload.message)
+            setTimeout(() => {
+              openModal()
+              // nav("/login")
 
- 
+            }, 2000);
+
+
+          } else {
+            toast.warning(res.error.message)
+          }
+
+
+
+        })
+        .catch(e => {
+          console.log(e);
+
+        });
+
+
+
+
+
+
     }
 
 
@@ -121,70 +121,70 @@ const [otp, setOtp] = useState('');
   };
 
 
-const handleVerifyOtp = async ()=>{
- 
+  const handleVerifyOtp = async () => {
 
 
-if(otp === userOtp){
-  
- 
 
-    const post_data ={
-     otp
-    }
+    if (otp === userOtp) {
 
 
-    await  dispatch(verify_otp_post_async(post_data))
-    .then(res => {
 
-          if(res?.payload?.message){
+      const post_data = {
+        otp
+      }
+
+
+      await dispatch(verify_otp_post_async(post_data))
+        .then(res => {
+
+          if (res?.payload?.message) {
             toast.success(res.payload.message)
 
-closeModal()
+            closeModal()
 
 
             setTimeout(() => {
-               nav("/login")
-  
-            }, 2000);  
+              nav("/login")
 
-          }else{
+            }, 2000);
+
+          } else {
             toast.warning(res.error.message)
 
           }
 
-  
-    
 
- 
-    })
-    .catch(e => {
-    console.log(e);
-  
-    });
-    
-    
-    
+
+
+
+        })
+        .catch(e => {
+          console.log(e);
+
+        });
+
+
+
+
+
+
+    }
+
+    else {
+      toast.warning("invalid otp")
+
+    }
+
+
+
+    // nav("/login")
+
+
+
 
 
 
   }
-
-else{
-  toast.warning("invalid otp")
-
-}
-
-
-
-// nav("/login")
-
-
-
-
-
-
-}
 
 
 
@@ -193,7 +193,7 @@ else{
   return (
     <div className='bg-main py-20 relative'>
       {/* Shadow image */}
-      <Toaster position='top-right'/>
+      <Toaster position='top-right' />
       <img src={shadow} alt="shadow" className='h-[75%] py-20 w-[70%] mx-auto ' />
 
       {/* Login section */}
@@ -339,18 +339,18 @@ else{
                     as="h3"
                     className="text-lg font-medium leading-6 text-[#55E3CB]"
                   >
-                     Please Verify Your OTP
+                    Please Verify Your OTP
                   </Dialog.Title>
-       <div className="mt-2">
-       <OtpInput
-      value={otp}
-      onChange={setOtp}
-      numInputs={6}
-      
-      renderSeparator={<span>-</span>}
-      renderInput={(props) => <input {...props} className='!w-full h-14 rounded-lg' />}
-    />
-       </div>
+                  <div className="mt-2">
+                    <OtpInput
+                      value={otp}
+                      onChange={setOtp}
+                      numInputs={6}
+
+                      renderSeparator={<span>-</span>}
+                      renderInput={(props) => <input {...props} className='!w-full h-14 rounded-lg' />}
+                    />
+                  </div>
 
 
                   <div className="mt-4">

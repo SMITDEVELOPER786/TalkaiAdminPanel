@@ -48,7 +48,7 @@ export const user_buy_phone_post_async = createAsyncThunk(type_constants.BUY_PHO
 
 export const create_assistant = createAsyncThunk(type_constants.CREATE_ASSISTANT, async (post_data) => {
   try {
-    const response = await api.post('/assistant/', post_data);
+    const response = await api.post('/assistant/create', post_data);
 
     const res_data = await response.data;
     return res_data;
@@ -85,6 +85,7 @@ export const getAssistant = createAsyncThunk(type_constants.GET_ASSISTANT, async
 
 export const deleteAssistant = createAsyncThunk(type_constants.DeleteAssistant, async (assistId) => {
   try {
+    console.log(assistId)
     const data = await api.delete(`/assistant/${assistId}`)
     console.log(data)
     return "Assistant deleted successfully"
